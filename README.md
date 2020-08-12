@@ -324,3 +324,124 @@ UI 디자인에 필요한 그래픽 디자인 툴이다. <br>
 서로 효율적으로 작업 진행이 가능하다. <br> 
 Window와 Mac 상관없이 UI 편집이 가능하다
 </p>
+
+# 3day
+
+## CSS(Cascading Style Sheets)
+
+CSS는 HTML 문서를 스타일링 하는 언어이다
+ 
+## 1. css 기본 문법
+
+```html
+  선택자 {
+    속성1: 값;
+    속성2: 값2;
+  }
+```
+```html
+ h1 {
+   color: deepskyblue;
+   font-size: 2em;
+ }
+```
+
++ css는 html 문서 내에 포함시킬 수 있다 
++ `<head>` 내부에서만 사용 가능하고 `<style>` 태그를 사용해서 css코드 넣기
++ MIME type을 지정하는데 HTML5에서는 기본 생략
+  
+ 
+
+### 스타일 방법 3가지
+
+```html 
+<link
+  href="css/style.css"
+  type="text/css"
+  rel="stylesheet"
+/>
+```
+
++ 인라인 스타일
+   * 요소 내부에 style 속성을 이용하여 css 코드 작성
+   ```html
+   <section style="color: #903000; text-decoration: none:">
+   ```
+
++ 인터널 스타일
+  ```html
+  <style>
+   section {
+    color: #903000;
+   }
+  </style>
+  ```
+
++ 익스터널 스타일
+   * Link 요소를 사용하여 외부에 있는 css 파일을 적용하는 방법
+   ```html
+   <link rel="stylesheet" href="css/style.css">
+   ```
+
+## 2.css 선택자
+
+### 1) CSS 심플 선택자
+
+#### 요소 선택자(Elements Type Selector) `figure { ... }`
+  * 문서 내의 특정 요소를 선택해서 편집 가능 
+  * 우선권을 갖고 있음 
+
+#### 그룹핑(Grouping) `a, abbr { ... }`
+  * 공통적으로 스타일을 적용하고 싶을 때는 요소 선택자를 묶어서 꾸며줄 수 있다. 
+
+#### 전체 선택자(Universal Selector) `* { ... }`
+  * *를 사용한다 
+  * 모든 요소에 스타일을 적용할 수 있다. 
+
+#### 자손 선택자(Descendent Selector) `h1 abbr { ... }`
+  *포함하고 있는 요소를 꾸밀 때 사용
+
+#### 클래스 선택자(Class Selector) `.class { ... }`
+  * .class (대소문자 구분하기 때문에 주의)
+
+#### 멀티 클래스 선택자(Mutil Class Selector) `.class1.class2 { ... }`
+  * 1) .class1.class2 : 하나의 요소가 두 개의 class를 가진 형태
+  * 2) .class1 .class2 : class1이라는 값을 가진 요소가 내부의 class2라는 요소를 찾을 때 사용(자손 선택자)
+  * 3) 1과 2는 각각 다른 의미를 가진다. 
+
+#### 아이디 선택자(ID Selector) `#id { ... }`
+  * ID 값이 동일한 대상자를 찾음. 
+
+
+### CSS 속성 선택자
+
+#### 자식 선택자
+  *  직계 자식만 포함, 손주는 포함 하지 않는다. 
+
+#### 속성 선택자
+  * `*[] { ... }` : *요소가 [] 속성값을 가지고 있다면.
+  * 연속해서 사용 가능 [], [] 두 가지 속성을 모두 갖고 있다.
+  * [] 앞에는 생략 가능
+  ```html
+  [id]    { ... }
+  [class] { ... }
+  [title] { ... }
+  [shape] { ... }
+
+  area[shape][title] { ... }
+
+  <area shape="" coords="" href="">
+  <area shape="" coords="" href="" title="">
+  ```
+  * 단어가 반드시 일치해야 한다. 
+  ```html
+  [id="about-css"] { ... }
+  #about-css       { ... }
+
+  [class="note"] { ... }
+  .note
+  ```
+
+### CSS 가상 클래스 선택자
+
+### CSS 가상 요소 선택자
