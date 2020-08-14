@@ -569,4 +569,169 @@ CSS는 HTML 문서를 스타일링 하는 언어이다
    ＼|＿＿＿＿＿|
   </pre>
   ```
+## 5day 
+
+### CSS 상속
++ 브라우저 개발 툴에서 상속 여부를 확인
+
+#### 상속되는 속성 (글자색, 글자 디자인에 관련된 것)
+ + color
+ + font-size
+ + font-family
+ + letter- spacing
+
+#### 상속되지 않는 속성 (공간에 관련된 것)
+ + outline
+ + margin
+ + border
+ + padding
+
+### 케스케이드(Cascade) 규칙
+ + 정의 : 여러 스타일 시트를 결합하고 이들 사이의 충돌을 해결하는 프로세스
+ + CSS는 케스케이드 개념이 중요하다는 것을 약어에서 강조, 가장 기본적인 수준에서는 규직 순서가 중요하지만 그보다 더 복잡하다는 것을 말한다. 
+
+#### 중요성 (Importance)
+  * !important 선언은 다른 모든 선언보다 우선권을 가진다.
+  * !important 가 적용된 속성을 덮어 쓰려면. 다시 !important를 사용해야 하기에 최대한(절대!) 사용하지 않도록 노력해야 한다. (이 요소를 사용하지 않고 문제를 해결하려고 노력!)
+
+#### 특성 (Specificity)
+ * 선택자의 우선권에 대한 척도
+ * 각 척도를 1, 10, 100, 1000 단위로 생각하면 이해하기 좋다.
+
+```
+    요소 선택자 < 클래스 선택자 < ID 선택자 < 인라인 스타일
+     0,0,0,1        0,0,1,0       0,1,0,0       1,0,0,0
+```
+
+[NOTE]
+```
+*, >, +, ~ 등 콤비네이터(Combinators),
+:not() 가상 클래스는 특성에 영향을 주지 않는다.
+```
+
+   [예시]
+   ```
+   *                           --0000 
+   a                           --0001        
+   a.link                      --0011
+   li:nth-child(2) a:hover     --0022 
+   .nav:nth-child(2) a:hover   --0031
+   #outer a                    --0101
+   #outer #inner a             --0201  
+   style="color: tan"          --1000
+                               --important
+   ``` 
+
+#### 소스 순서
+ * 중요성, 특성이 설정되지 않았거나 동일한 경우 나중에 나온 소스의 스타일이 우선권을 가진다.
+
+    예시
+    ```
+    p.note { color: #930212; }
+    p { color: #d5727e; } // 우선권을 가진다.
+    ```
+
+### 타이포 그래피
+
+#### 폰트(Fonts) 스타일 속성
+ * 폰트에 영향을 주는 속성으로 적용되는 모양, 크기, 굵기, 기울임 등
+   + font-family 모양 
+   + font-size 크기 
+   + font-weight 굵기 
+   + font-style 기울임 (이탤릭체)
+   + font-variant 등.
+
+ * 글자 색상은 color 속성으로 설정.
+  +  color keywords 
+     * red, gree, blue, pink, black
+  +  hex color code 
+     * #RRGGBB / 0 ~ 9, a ~ f 예)#1868a7
+  +  rgb, rgba 
+     * RED, GREEN, BLUE, ALPHA(투명도)    
+       - 예)rgb(127,255,0), rgba(127,255,0,0.3)
+       - 색상은 256가지색이 있다 (0 ~ 255)
+  +  hsl, hsla 
+     * HUE(색상), SATURATION(채도), LIGHTNESS(명도), ALPHA 
+       - 예)hsla(360,60%,70%+ )
+       - HUE는 각도(deg)는 사용, 채도 및 명도는 퍼센트(%) 사용
+ *  웹브라우저는 운영체제가 지원하는 기본 폰트(웹 안전 폰트)만 화면에 렌더링 한다. (참고: https://cssfontstack.com) 즉, 사용된 폰트가 사용자 컴퓨터에 없으면 렌더링 X.   
+ 사용하기 전 안전한 폰트인지 확인!
+```
+  [웹 안전 폰트]
+  Arial            [sans-serif]  고딕체
+  Verdana          [sans-serif]  고딕체
+  Courier New      [monospace]   코드체(공간이 동일)
+  Georgia          [serif]       명조체
+  Times New Roman  [serif]       명조체
+  Trebuchet MS     [serif]       명조체
+```
+* 비주얼 디자인 과정에서 적용 가능한 웹폰트를 사용해야 한다. 폰트 저작권에 주의!
+
+*
+  + https://fonts.google.com
+  + https://google.co.kr/search?q=무료+웹폰트
+
+* `<local>` 속성 : 서버에서 다운받지 않고 사용자의 컴퓨터의 해당 폰트가 있으면 그 폰트를 사용해라.
+
+#### 텍스트(Text) 레이아웃 속성
+* 텍스트 간격 및 레이아웃 기능에 영향을 주는 속성으로 행간, 자간, 어간, 정렬, 변형, 꾸밈, 그림자
+
+ ##### line-height 행간 
+   - 최소 1.5이상이 글읽기에 용이하다.
+
+ ##### letter-spacing 자간 
+   - px값 보다는 em단위로 설정하는것이 좋음.
+
+ ##### word-spacing 어간 (단어사이의 간격)
+   - px, em(소수점) 단위 사용
+
+ + 행간 > 어간 > 자간 - 가독하기가 쉬워짐.   
+       
+
+##### text-align 정렬 
+ + left(기본값) / center / right
+ + 속성 또한 부모로 부터 상속 받을 수 있다. 
+
+##### text-indent 들여쓰기
+ + 첫 번째 줄 라인만 들여쓰기 가능하다. 
+ + padding-left를 사용하면 전체 들여쓰기 가능
+ + em단위 사용(마이너스 값 사용 가능)
+
+##### text-transform 변형 
+ + uppercase(모두 대문자), lowercase(모두 소문자)
+
+##### font-variant 변형 
+ + small-caps(대문자만 크게, 소문자는 작은대문자) 
+ + all-small-caps(모두 크기가 작은 대문자)
+ + 영문에서만 사용, 한글을 적용 X
+
+##### text-decoration 꾸밈 
+ + underline(밑줄) : 판독의 어려움을 주기 때문에 권장하지 않음
+ + overline(윗줄) 
+ + line-through(중간줄)
+
+##### white-space 공백처리
+
+normal 기본값 : 공백 없이 그대로 유지
+pre - 텍스트를 입력한 그대로 유지 
+pre-line - 텍스트를 입력한 그대로 유지하면서 들여쓰기 제거
+nowrap - 랩핑을 하지 않는다는 뜻, 한 줄로 길게 나타남
+
+##### word-break - 단어의 분리를 어떻게 할 것인지 결정
+
+ + break-all
+  (공백/띄어쓰기) 수고했어.오늘도
+  (음절)         수.고.했.어.오.늘.도
+
+##### word-wrap : 박스의 가로 영역을 넘친 단어 내에서 임의의 분리 여부를 결정하여 줄바꿈에 관여
+ + break-word
+
+##### text-shadow 그림자
+ + text-shadow : x y blur sprea color;
+ ```
+ text-shadow : 4px 4px 0px #9bdbde, 
+               0px 3px 10px #943978;
+ ```                
+ + 그림자의 색상값을 멀티로 줄 수 있다. (콤마(,)로 구분)
+ + 그림자를 적용하지 않은 글자가 가독성이 더 좋다
 
