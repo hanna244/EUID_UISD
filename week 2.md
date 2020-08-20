@@ -315,9 +315,20 @@
 
   * Git 이란?    
    버전 관리 시스템(VCS), 무료, 공개 소프트웨어 
-    
+    |이름| 설명|
+    |---|---|
+    |Tracked|관리대상임|
+    |Untracked|관리대상이 아님|
+    |Modified|수정함|
+    |Unmodified|수정하지 않음|
+    | Staged|커밋으로 저장소에 기록|   
+    |soft |현재 인덱스, 워킹 트리를 유지한 채로 HEAD를 변경|
+    |mixed| default 옵션. 인덱스는 취소한채로 워킹트리만 그대로|
+    |hard |인덱스와 워킹트리 변화를 모두 제거하고 HEAD를 변경|
+    + Git 사용 중 자주 만나는 이슈 정리 : <https://parksb.github.io/article/28.html>
 
-  * GitHub
+
+  * GitHub   
    코드저장소(Git)을 웹에 옮겨 놓은 원격저장소
     + 프로젝트를 관리할 때 사용하기 좋음. (여러사람이 참여하여 수정 가능) 
     + 분산버전관리    
@@ -530,6 +541,217 @@
      - `scroll` : x/y축 스크롤이 무조건 보입니다.
      - `overflow-x` : x축 방향만 overflow 설정을 수행합니다.
      - `overflow-y` : y축 방향만 overflow 설정을 수행합니다.
+
+---
+## 3day
+
+  ### 질문
+  * Q) 요소와 태그는 의미가 같나요?    
+       예를들어 `<ol>`요소, `<ol>`태그. 둘 중 어떤식으로 명칭해도 상관없나요? 
+  * A) 요소와 태그는 다르다. 그러나 혼용해서 쓰는 경우가 많다. HTML 요소는 여는태그, 속성, 닫는태그 및 스 사이에 있는 모든 것의 모음이다. 반면에 HTML 태그(열림 또는 닫힘)는 요소의 시작 또는 끝을 표시하기 위해 사용된다.     
+  그러나 일반적으로 HTML요소와 HTML태그라는 용어는 상호교환이 가능하다.    
+  참고 : <https://www.tutorialrepublic.com/html-tutorial/html-elements.php>
+    
+
+
+  ## <details> 요소
+    - 디스클로저 위젯(disclosure widget, 참고: https://goo.gl/uznvFY)으로 정보를 감추거나, 펼쳐서 보여준다.   
+    (보다 자세한 정보를 알려줄 때 사용)
+    - 모든 정보를 일시에 공개하지 않고 사용자의 요구에 맞춰 정보를 공개할 수 있다. (화면의 복잡함을 줄임)
+    - 아코디언(Accordion) 컴포넌트와 비슷하게 작동한다.
+    - 참고로 각주(footnote)에는 적합하지 않다.
+
+      [속성]
+        open - 페이지 로딩 시, 위젯을 펼쳐 표시하도록 설정      
+        (open 속성을 사용하지 않을 땐 기본적으로 감춰진 형태로 표시)
+
+       ```html
+             [사용 예시]
+               <details open>
+                 ...
+               </details>
+       ```
+       ```html
+           <details open>
+               <summary> 사용자와 상호작용하는 요소</summary>
+               <p>
+                 위하여서 풀밭에 청춘의 품고 가치를 그들의 사막이다. 
+                 가치를 넣는 열매를 커다란 방지하는 청춘을 얼음 부패뿐이다.
+               </p>
+             </details>
+       ```
+
+  ## <summary> 요소
+    - <details> 요소의 레이블/캡션(제목), 서머리(요약) 등을 표시한다.
+    - 폼 <fieldset> 요소의 제목을 <legend>가 표시하듯 비슷하다.
+
+      ```html
+      [사용 예시]
+        <section class="progress window">
+          <h1>"Really Achieving Your Childhood Dreams" 파일 복사</h1>
+          <details>
+          <summary>복사중... <progress max="375505392" value="97543282"></progress> 25%</summary>
+          <dl>
+            <dt>초당 전송 속도:</dt>
+            <dd>452KB/s</dd>
+            <dt>로컬 파일이름:</dt>
+            <dd>/home/rpausch/raycd.m4v</dd>
+            <dt>원격 파일이름:</dt>
+            <dd>/var/www/lectures/raycd.m4v</dd>
+            <dt>재생시간:</dt>
+            <dd>01:16:27</dd>
+            <dt>컬러 프로파일:</dt>
+            <dd>SD (6-1-6)</dd>
+            <dt>영상 크기(너비×높이):</dt>
+            <dd>640×480</dd>
+          </dl>
+          </details>
+        </section>
+      ```
+
+  ## <dialog> 요소
+    - 다이얼로그(Dialog, 참고: https://goo.gl/pQ7gSX)는 사용자의 결정 또는 정보 입력을 요구하는 컴포넌트를 말함.
+    - '모달 윈도우'(레이어 팝업) 또는 '대화상자'로도 불린다.
+
+      [속성]
+        open - 페이지 로딩 시, 위젯을 표시하도록 설정    
+        (open 속성을 사용하지 않을 땐 기본적으로 감춰진 형태로 표시)
+
+        ```html
+        [사용 예시]
+          <dialog open>
+            ...
+          </dialog>
+        ```
+        ```html
+        <dialog open>
+            <button type="submit">confirm</button>
+        </dialog>
+        ```
+
+   * 모든 브라우저가 HTML5.2를 지원하는 것은 아니다. 사용하기 전 확인하기!
+  ---
+  #### [참고] 
+     더미텍스트 (로렘입숨 Lorem-Ipsum)
+      * 콘텐츠와 텍스트가 보이는 상황을 가정해, 임의의 텍스트를 넣어서 폰트나 전체적인 레이아웃을 맞춰볼때 쓰는 용도
+        + 영어 <https://www.lipsum.com/>
+        + 한글 <http://hangul.thefron.me/>
+  ---
+  ## <script> 요소
+    - JavaScript 코드 또는 파일을 HTML 문서에 작성하거나, 연결할 때 사용한다.
+
+      [속성]
+        - src
+        - type
+        - async
+        - defer
+      
+    ```html
+    [코드 예시]
+    
+      <script src="js/app.js"></script> 
+
+      <script>
+        // JavaScript 코드
+        console.log('JavaScript 코드를 실행했습니다.');
+        console.log(document.characterSet);
+        console.log(document.doctype);
+      </script>
+    ```
+
+    ```html
+    <!--외부에 있는 css 파일을 불러올 때 --> <!--`rel` : 현재 문서와의 관계-->
+      <link rel="stylesheet" href="css/app.css">
+      
+    <!-- style요소를 직접적으로 html 문서에 작성 할 때 -->
+    <style>
+      body {
+        background-color: #17cc89; 
+        margin: 0; 
+        min-height: 100vh; 
+        width: 100vw;
+      }
+    </style>
+
+       <!--style요소를 body 부분에 작성할 때-->
+       <body style="background-color: #17cc89; margin: 0; min-height: 100vh; width: 100vw;">
+      
+    <!-- HTML 문서 외부에 있는 JavaScript 파일을 호출하고자 할 때는 src 속성 사용-->
+     <script src="./js/app.js"></script>
+    
+    <!-- HTML 문서 내부에 JavaScript 코드를 작성할 경우-->
+     <script tyep="text/javascript"> (HTML5에서는 타입값을 명시하지 않아도 기본적으로 자바스크립트 코드임을 알고 있기 때문에 생략가능)
+       // JavaScript 코드
+       console.log('JavaScript 코드를 실행했습니다.');
+       console.log(document.characterSet);
+       console.log(document.doctype);
+     </script>
+    ```
+
+  ## <noscript> 요소
+    - 사용자의 웹 브라우저 환경에서 스크립트를 지원되지 않거나, 스크립트가 꺼져있는 경우, 문서에 표시될 문구를 삽입한다.
+
+      ```html
+      [코드 예시]
+        <noscript>
+          <p>JavaScript를 지원하지 않습니다.</p>
+        </noscript>
+      ```
+
+  ## <canvas> 요소
+    - JavaScript를 사용하여 그래픽(비트맵)을 그릴 때 사용한다.     
+      <canvas> 요소로부터 2D 또는 WebGL 컨텍스트 객체를 추출해 그래픽을 그릴 수 있다.
+    - SVG는 확대 했을 때 이미지가 깨지지 않지만 canvas는 이미지가 깨진 그래픽 처럼 보이게 된다.
+
+      [코드 예시]
+      ```html
+        <canvas width="800" height="600"></canvas>
+
+        <script>
+          // canvas 드로잉
+          var canvas = document.querySelector('canvas');
+          var ctx = canvas.getContext('2d');
+          ctx.translate(200, 40);
+          ctx.beginPath();
+          ctx.moveTo(180, 175);
+          ctx.fillStyle = '#ff0';
+          ctx.arc(180, 175, 60, Math.PI * -0.35, Math.PI * -1.05, true);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(190, 190);
+          ctx.fillStyle = '#ff0';
+          ctx.arc(190, 190, 100, Math.PI * -0.35, Math.PI * 0.95);
+          ctx.fill();
+        </script>
+      ```
+    
+## CSS 리스트(Lists) 스타일링
+
+  ### HTML 목록과 관련된 속성
+
+    * `<ul>`, `<li>`
+    * `<list-style-type>`
+      + 
+        + disc / circle / square    
+        + upper-alpha (A,B,C)
+        + lower-alpha (a,b,c)
+        + decimal (1,2,3)
+        + decimal-leading-zero (01,02,03)
+        + 외국어 등 여러가지 선택가능 
+
+    * list-stye-position : outside(기본값) / insid(들여쓰기)
+
+      ```css
+      list-style-type: none; (목록 스타일 지우기)
+      padding-left: 0; (들여쓰기 X)
+      ```
+    * list-style-image : url("../image/star.svg")
+    * **list-style** : square url("star.svg") inside **(속기 유형 작성법) 실무에서 많이 사용**
+  
+      ```css
+       ul{ list-style: none inside url("../images/stat.svg") }
+      ```
+
 
 
 
