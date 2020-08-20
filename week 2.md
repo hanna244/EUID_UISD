@@ -325,6 +325,10 @@
     |soft |현재 인덱스, 워킹 트리를 유지한 채로 HEAD를 변경|
     |mixed| default 옵션. 인덱스는 취소한채로 워킹트리만 그대로|
     |hard |인덱스와 워킹트리 변화를 모두 제거하고 HEAD를 변경|
+    |Gitlog|Git 기록|
+    |브랜치(Branch)|새로운 가지를 뻗는 것을 의미, 기존 개발에 이어서 작업하지 않고 새롭게 가지를 쳐서(브랜치) 작업할 수 있다.|
+    |머지(Merge)|각각의 브랜치에서 작업한 코드를 합치는 기능|
+
     + Git 사용 중 자주 만나는 이슈 정리 : <https://parksb.github.io/article/28.html>
 
 
@@ -553,15 +557,15 @@
     
 
 
-  ## <details> 요소
-    - 디스클로저 위젯(disclosure widget, 참고: https://goo.gl/uznvFY)으로 정보를 감추거나, 펼쳐서 보여준다.   
+  ## `<details>` 요소
+  - 디스클로저 위젯(disclosure widget, 참고: https://goo.gl/uznvFY)으로 정보를 감추거나, 펼쳐서 보여준다.   
     (보다 자세한 정보를 알려줄 때 사용)
     - 모든 정보를 일시에 공개하지 않고 사용자의 요구에 맞춰 정보를 공개할 수 있다. (화면의 복잡함을 줄임)
     - 아코디언(Accordion) 컴포넌트와 비슷하게 작동한다.
     - 참고로 각주(footnote)에는 적합하지 않다.
-
-      [속성]
-        open - 페이지 로딩 시, 위젯을 펼쳐 표시하도록 설정      
+      
+    * [속성]
+        - open - 페이지 로딩 시, 위젯을 펼쳐 표시하도록 설정      
         (open 속성을 사용하지 않을 땐 기본적으로 감춰진 형태로 표시)
 
        ```html
@@ -572,17 +576,16 @@
        ```
        ```html
            <details open>
-               <summary> 사용자와 상호작용하는 요소</summary>
-               <p>
-                 위하여서 풀밭에 청춘의 품고 가치를 그들의 사막이다. 
-                 가치를 넣는 열매를 커다란 방지하는 청춘을 얼음 부패뿐이다.
-               </p>
+            <summary> 사용자와 상호작용하는 요소</summary>
+            <p>
+              위하여서 풀밭에 청춘의 품고 가치를 그들사막이다. 가치를 넣는 열매를 커다란 방지하는 청춘얼음 부패뿐이다.
+            </p>
              </details>
        ```
 
-  ## <summary> 요소
-    - <details> 요소의 레이블/캡션(제목), 서머리(요약) 등을 표시한다.
-    - 폼 <fieldset> 요소의 제목을 <legend>가 표시하듯 비슷하다.
+  ## `<summary>` 요소
+   - `<details>` 요소의 레이블/캡션(제목), 서머리(요약) 등을 표시한다.
+   - 폼 `<fieldset>` 요소의 제목을 `<legend>`가 표시하듯 비슷하다.
 
       ```html
       [사용 예시]
@@ -608,13 +611,14 @@
         </section>
       ```
 
-  ## <dialog> 요소
-    - 다이얼로그(Dialog, 참고: https://goo.gl/pQ7gSX)는 사용자의 결정 또는 정보 입력을 요구하는 컴포넌트를 말함.
-    - '모달 윈도우'(레이어 팝업) 또는 '대화상자'로도 불린다.
+  ## `<dialog>` 요소
+   - 다이얼로그(Dialog, 참고: https://goo.gl/pQ7gSX)는 사용자의 결정 또는 정보 입력을 요구하는 컴포넌트를 말함.
+   - '모달 윈도우'(레이어 팝업) 또는 '대화상자'로도 불린다.
 
-      [속성]
-        open - 페이지 로딩 시, 위젯을 표시하도록 설정    
+   * [속성]
+     - open - 페이지 로딩 시, 위젯을 표시하도록 설정    
         (open 속성을 사용하지 않을 땐 기본적으로 감춰진 형태로 표시)
+   * 모든 브라우저가 HTML5.2를 지원하는 것은 아니다. 사용하기 전 확인하기!
 
         ```html
         [사용 예시]
@@ -628,7 +632,7 @@
         </dialog>
         ```
 
-   * 모든 브라우저가 HTML5.2를 지원하는 것은 아니다. 사용하기 전 확인하기!
+
   ---
   #### [참고] 
      더미텍스트 (로렘입숨 Lorem-Ipsum)
@@ -636,71 +640,70 @@
         + 영어 <https://www.lipsum.com/>
         + 한글 <http://hangul.thefron.me/>
   ---
-  ## <script> 요소
-    - JavaScript 코드 또는 파일을 HTML 문서에 작성하거나, 연결할 때 사용한다.
+  ## `<script>` 요소
+   - JavaScript 코드 또는 파일을 HTML 문서에 작성하거나, 연결할 때 사용한다.
 
       [속성]
         - src
         - type
         - async
         - defer
-      
-    ```html
-    [코드 예시]
+
+  ```html
+  [코드 예시]
+  
+    <script src="js/app.js"></script> 
+
+    <script>
+      // JavaScript 코드
+      console.log('JavaScript 코드를 실행했습니다.');
+      console.log(document.characterSet);
+      console.log(document.doctype);
+    </script>
+  ```
+  ```html
+  <!--외부에 있는 css 파일을 불러올 때 --> <!--`rel` : 현재 서와의 관계-->
+    <link rel="stylesheet" href="css/app.css">
     
-      <script src="js/app.js"></script> 
+  <!-- style요소를 직접적으로 html 문서에 작성 할 때 -->
+  <style>
+    body {
+      background-color: #17cc89; 
+      margin: 0; 
+      min-height: 100vh; 
+      width: 100vw;
+    }
+  </style>
 
-      <script>
-        // JavaScript 코드
-        console.log('JavaScript 코드를 실행했습니다.');
-        console.log(document.characterSet);
-        console.log(document.doctype);
-      </script>
-    ```
-
-    ```html
-    <!--외부에 있는 css 파일을 불러올 때 --> <!--`rel` : 현재 문서와의 관계-->
-      <link rel="stylesheet" href="css/app.css">
-      
-    <!-- style요소를 직접적으로 html 문서에 작성 할 때 -->
-    <style>
-      body {
-        background-color: #17cc89; 
-        margin: 0; 
-        min-height: 100vh; 
-        width: 100vw;
-      }
-    </style>
-
-       <!--style요소를 body 부분에 작성할 때-->
-       <body style="background-color: #17cc89; margin: 0; min-height: 100vh; width: 100vw;">
-      
-    <!-- HTML 문서 외부에 있는 JavaScript 파일을 호출하고자 할 때는 src 속성 사용-->
-     <script src="./js/app.js"></script>
+     <!--style요소를 body 부분에 작성할 때-->
+     <body style="background-color: #17cc89; margin: 0; min-height: 100vh; width: 100vw;">
     
-    <!-- HTML 문서 내부에 JavaScript 코드를 작성할 경우-->
-     <script tyep="text/javascript"> (HTML5에서는 타입값을 명시하지 않아도 기본적으로 자바스크립트 코드임을 알고 있기 때문에 생략가능)
-       // JavaScript 코드
-       console.log('JavaScript 코드를 실행했습니다.');
-       console.log(document.characterSet);
-       console.log(document.doctype);
-     </script>
-    ```
+  <!-- HTML 문서 외부에 있는 JavaScript 파일을 호출하고자  때는 src 속성 사용-->
+   <script src="./js/app.js"></script>
+  
+  <!-- HTML 문서 내부에 JavaScript 코드를 작성할 경우-->
+   <script tyep="text/javascript"> (HTML5에서는 타입값을 명시하지 않아도 기본적으로 자바스크립트 코드임을 알고 있기 때문에 생략가능)
+     // JavaScript 코드
+     console.log('JavaScript 코드를 실행했습니다.');
+     console.log(document.characterSet);
+     console.log(document.doctype);
+   </script>
+  ```
 
-  ## <noscript> 요소
+  ## `<noscript>` 요소
     - 사용자의 웹 브라우저 환경에서 스크립트를 지원되지 않거나, 스크립트가 꺼져있는 경우, 문서에 표시될 문구를 삽입한다.
 
-      ```html
-      [코드 예시]
-        <noscript>
-          <p>JavaScript를 지원하지 않습니다.</p>
-        </noscript>
-      ```
+   ```html
+   [코드 예시]
+     <noscript>
+       <p>JavaScript를 지원하지 않습니다.</p>
+     </noscript>
+   ```
 
-  ## <canvas> 요소
-    - JavaScript를 사용하여 그래픽(비트맵)을 그릴 때 사용한다.     
-      <canvas> 요소로부터 2D 또는 WebGL 컨텍스트 객체를 추출해 그래픽을 그릴 수 있다.
-    - SVG는 확대 했을 때 이미지가 깨지지 않지만 canvas는 이미지가 깨진 그래픽 처럼 보이게 된다.
+  ## `<canvas>` 요소
+   - JavaScript를 사용하여 그래픽(비트맵)을 그릴 때 사용한다.     
+      `<canvas>` 요소로부터 2D 또는 WebGL 컨텍스트 객체를 추출해 그래픽을 그릴 수 있다.
+   - SVG는 확대 했을 때 이미지가 깨지지 않지만 canvas는 이미지가 깨진 그래픽 처럼 보이게 된다.
 
       [코드 예시]
       ```html
@@ -776,20 +779,20 @@
   ### HTML 정의 목록 스타일링
     * `<dl>`, `<dt>`, `<dd>`
 
-      ```css
-      /*[초기화]*/
-      dl {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-      
-      dd {
-        margin-left: 0;
-      }
-      ```
+   ```css
+   /*[초기화]*/
+   dl {
+     margin-top: 0;
+     margin-bottom: 0;
+   }
+   
+   dd {
+     margin-left: 0;
+   }
+   ```
 
   ### HTML 속성을 사용한 순차 목록 출력 설정
-    * `<start>`, `<reversed>``<value>` 속성
+   * `<start>`, `<reversed>``<value>` 속성
 
       ```css
       /*입력한 값부터 순서 시작 (9,10,11,12)*/
@@ -808,8 +811,8 @@
 ## CSS 배경 스타일링
   
   ### 배경 색: background-color
-    * 배경의 색상을 넣는 속성
-    * 속성 값은 rgb() 또는 #으로 시작하는 HEX, 색상 이름 등이 들어 갈 수 있습니다.
+   * 배경의 색상을 넣는 속성
+   * 속성 값은 rgb() 또는 #으로 시작하는 HEX, 색상 이름 등이 들어 갈 수 있습니다.
 
      ```css
      iv {
@@ -818,7 +821,7 @@
      ```
     
   ### 배경 위치: background-position
-    * background-image의 위치 설정
+   * background-image의 위치 설정
 
       * 'left','center','right'로 표현 할 수 있습니다.
       * px이나 %등의 속성이 들어 올 수 있습니다.
@@ -846,18 +849,18 @@
   ### 배경 반복: background-repeat
     * background-image의 반복 여부 설정
 
-    ```css
+  ```css
    div {
      background-repeat: repeat; /*기본값*/ 
      background-repeat: no-repeat; /*반복 없음*/
      background-repeat: repeat-y; /*y축으로 배경이미지 반복*/
      background-repeat: repeat-x; /*x축으로 배경이미지 반복*/
    }
-    ```
+  ```
 
   ### 배경 고정: background-attachment
-    * 화면 스크롤이 있을 경우 배경이미지를 고정할 수 있다
-    * background-position의 기준 점을 뷰포트(웹 페이지 화면)로 변경할 수 있습니다.
+   * 화면 스크롤이 있을 경우 배경이미지를 고정할 수 있다
+   * background-position의 기준 점을 뷰포트(웹 페이지 화면)로 변경할 수 있습니다.
   
       ```css
       div {
@@ -872,17 +875,17 @@
   ### background
     * 위에 속성들을 하나로 묶어서 사용
 
-      ```css
-      /* transparent는 기본값이기 때문에 안넣어도 상관X */
-      div{
-        background: 
-        transparent 
-        url('../img/aa.svg') 
-        no-repeat 
-        10px 40px 
-        fixed;
-      }
-      ```
+   ```css
+     /* transparent는 기본값이기 때문에 안넣어도 상관X */
+     div{
+       background: 
+       transparent 
+       url('../img/aa.svg') 
+       no-repeat 
+       10px 40px 
+       fixed;
+     }
+   ```
 
   ### 배경 이미지: background-image
 
@@ -896,23 +899,23 @@
 
   ### 패던(Patterns) 디자인
 
-    ```css
+  ```css
     .is-floral {
       background: #000 url("../images/oriental-floral-pattern.svg");
       background-size: 50px; /* 패턴이미지 크기 조정 */
     }
-    ```
-    ```css
+  ```
+  ```css
     .is-model {
       background: url("../images/model.jpg") center;
       background-size: 150px;
     }
-    ```
+  ```
 
   ### 배경 클리핑: background-clip
-    * 배경이미지의 클리핑 영역 설정 content, padding, border
+   * 배경이미지의 클리핑 영역 설정 content, padding, border
   
-    ```css
+  ```css
     .background-clip {
       box-sizing: border-box;
       border: 20px solid rgba(0, 0, 0, 2);
@@ -922,16 +925,13 @@
       background-clip: content-box; /*클립 속성을 항상 아래쪽에 위치*/
       background-origin: border-box; /*기본값*/
     }
-    ```
+   ```
 
   ### 배경 기준: background-origin
-    * 배경이미지의 시작에 대한 기준점 설정 content, padding, border
+   * 배경이미지의 시작에 대한 기준점 설정 content, padding, border
 
 ---
 # 4day
-
- * 
-
 
   ## 플로팅(Floating) 레이아웃
    * 일반적인 레이아웃 흐름(Normal Layout Flow)
@@ -974,20 +974,19 @@
 
   ### [`<clear>` 속성]
     
-    + float를 해제시키는 속성 (부모요소가 자식을 감쌀 수 있게 함)
+   + float를 해제시키는 속성 (부모요소가 자식을 감쌀 수 있게 함)
 
-    ```css
+  ```css
     .clear {
       clear: none; /**/
       clear: left; /* float: left 해지 */
       clear: right; /*  */
       clear: both; /* 주로 많이 씀 */
     }
-
-    ```
+  ```
 
   ### 가상 요소 `<::after>` 사용
-    * 참고 : <https://takeuu.tistory.com/60>
+   * 참고 : <https://takeuu.tistory.com/60>
     
       ```css
       .clearfix::after {
@@ -1000,13 +999,12 @@
 
   ## 유저 인터렉션 속성
   
-    ### `<hidden>` 속성
+   ### `<hidden>` 속성
 
-      - 모든 HTML 요소들은 hidden 속성을 가질 수 있으며, 요소에 설정되면 요소가아직 페이지의 현재 상태와 직접적으로 관련이 없거나 페이지의 다른 부분에서 내용을 재사용하도록 선언하는 데 사용된다. 브라우저는 hidden 속성이 설정된 요소를 화면에 렌더링하지 않는다.
-
-          [사용 예시]
-  
-          ```html
+   - 모든 HTML 요소들은 hidden 속성을 가질 수 있으며, 요소에 설정되면 요소가아직 페이지의 현재 상태와 직접적으로 관련이 없거나 페이지의 다른 부분에서 내용을 재사용하도록 선언하는 데 사용된다. 브라우저는 hidden 속성이 설정된 요소를 화면에 렌더링하지 않는다.
+      
+        ```html
+        [사용 예시]
           <div class="container">
   
           <img
@@ -1019,19 +1017,19 @@
               <p>Drop Zone</p>
             </div>
           </div>
-          ```
+        ```
 
-    ### tabindex 속성
-      - 요소를 키보드로 탐색할 수 있도록 설정하거나, 제외 또는 순서대로 탐색할 수 있도록 설정할 수 있다. 
-      - **"탭(Tab) 이동"**이란 용어는 순차적 포커스 탐색을 사용하여 포커스 가능(Focusable) 요소 사이를 이동하는 것을 의미한다.
+   ### tabindex 속성
+   - 요소를 키보드로 탐색할 수 있도록 설정하거나, 제외 또는 순서대로 탐색할 수 있도록 설정할 수 있다. 
+   - **"탭(Tab) 이동"**이란 용어는 순차적 포커스 탐색을 사용하여 포커스 가능(Focusable) 요소 사이를 이동하는 것을 의미한다.
 
-        [기본적으로 포커스 가능한 요소들](참고: https://allyjs.io/data-tables/focusable.html)
-          폼 컨트롤 요소들           : input, button, textarea, select 등
-          href 속성을 가진 요소들     : a, area
-          controls 속성을 가진 요소들 : video, audio
+   - [기본적으로 포커스 가능한 요소들](참고: https://allyjs.io/data-tables/focusable.html)
+     - 폼 컨트롤 요소들           : input, button, textarea, select 등
+     - href 속성을 가진 요소들     : a, area
+     - controls 속성을 가진 요소들 : video, audio
 
+         ```html
         [사용 예시]
-
           // [양수] 탭 포커스 순서(2번째)를 설정한다.
           // (논리적 포커스 흐름에 방해가 되기에 사용을 권장하지 않음)
           // button요소는 기본적으로 Tab이 발생 됨 
@@ -1053,12 +1051,15 @@
             <li><a href="#pinch">위기</a></li>
             <li><a href="#overcome" tabindex="-1">극복</a></li>
           </ol>
+          ```
 
 
-    ### accesskey 속성
-      - 모든 HTML 요소는 accesskey 속성을 가질 수있다. 속성 값은 키보드 단축키로 설정된다.
-      - 하지만 accesskey 속성의 단축키는 브라우저와 운영체제 플랫폼에 의존하고 있어 운영체제마다 사용자 경험이 달라진다. 쉽게 말해 Windows 사용자와 Mac OSX 사용자가 사용하는 단축키는 달라진다. (iPhone과 Android 사용자 경험이 다른 것처럼)
+   ### accesskey 속성
+   - 모든 HTML 요소는 accesskey 속성을 가질 수있다. 속성 값은 키보드 단축키로 설정된다.
+   - 하지만 accesskey 속성의 단축키는 브라우저와 운영체제 플랫폼에 의존하고 있어 운영체제마다 사용자 경험이 달라진다. 쉽게 말해 Windows 사용자와 Mac OSX 사용자가 사용하는 단축키는 달라진다. (iPhone과 Android 사용자 경험이 다른 것처럼)
 
+        
+        ```
         [브라우저 × 운영체제 플랫폼]
           Windows
             Chrome  : Alt + 단축키
@@ -1075,7 +1076,9 @@
             Chrome  : Alt + 단축키
             Opera   : Alt + 단축키
             Firefox : Alt + Shift + 단축키
+        ```
 
+        ```html
         [사용 예시]
           <button
             type="button"
@@ -1084,35 +1087,38 @@
             onclick="collect()">
             수집
           </button>
+        ```
 
 
-    ### contenteditable 속성
-      - contenteditable 속성이 설정된 요소는 사용자가 직접 편집할 수 있도록 만들어 준다.
+   ### contenteditable 속성
+   - contenteditable 속성이 설정된 요소는 사용자가 직접 편집할 수 있도록 만들어 준다.
         + 값이 true 또는 빈 문자열("")일 경우 편집 허용.
         + 값이 false 일 경우 편집을 허용하지 않음.
-
+      ```html
         [사용 예시]
         <p contenteditable>
           ...
         </p>
+        ```
 
 
-    ### draggable 속성
-      - 모든 HTML 요소는 draggable 속성을 가질 수 있다.
-        값이 true 일 경우 드래그(Drag) 가능.
-        값이 false 또는 빈 문자열("")일 경우 드래그 불가능.
-      - 마우스에 의존하기 때문에 마우스를 사용하지 못하는 사용자에게 불편하다.
-
+   ### draggable 속성
+   - 모든 HTML 요소는 draggable 속성을 가질 수 있다.
+      + 값이 true 일 경우 드래그(Drag) 가능.
+      + 값이 false 또는 빈 문자열("")일 경우 드래그 불가능.
+   - 마우스에 의존하기 때문에 마우스를 사용하지 못하는 사용자에게 불편하다.
+        ```html
         [사용 예시]
         <p draggable="true">
           ...
         </p>
+        ```
 
-    ### 좋은 프론트엔드 개발자의 자격 요건
-      * 프론트엔드 개발자는 모든 사용자를 고려하는 설계자가 되야 한다. 
-      * 구조를 탄탄하고 의미적으로 구성할 수 있어야 한다.
-      * 디자이너가 만든 비주얼을 화면에 구성할 수 있는 표현 능력이 가능해야 한다. (CSS)
-      * 사회적 약자 계층도 이용할 수 있도록 서비스를 만들어야 한다. 
+   ### 좋은 프론트엔드 개발자의 자격 요건
+   * 프론트엔드 개발자는 모든 사용자를 고려하는 설계자가 되야 한다. 
+   * 구조를 탄탄하고 의미적으로 구성할 수 있어야 한다.
+   * 디자이너가 만든 비주얼을 화면에 구성할 수 있는 표현 능력이 가능해야 한다. (CSS)
+   * 사회적 약자 계층도 이용할 수 있도록 서비스를 만들어야 한다. 
 
 
 
