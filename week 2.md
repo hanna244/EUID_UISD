@@ -727,29 +727,395 @@
 ## CSS 리스트(Lists) 스타일링
 
   ### HTML 목록과 관련된 속성
+   * HTML 목록 요소 `<ul>`, `<ol>`, `<li>`, `<dl>`, `<dt>`, `<dd>`
+      * `<ul>`, `<ol>`, `<li>`
+      * `<list-style-type>` : 리스트 타입 선택
+          + disc(채워진 원형,ul요소의 기본값) / circle(속이 빈 원형) / square(채워진 사각형)
+          + upper-alpha (A,B,C)
+          + lower-alpha (a,b,c)
+          + decimal (1,2,3) 순자 목록으로 사용 가능
+          + decimal-leading-zero (01,02,03)
+          + 외국어 등 여러가지 선택가능 
 
-    * `<ul>`, `<li>`
-    * `<list-style-type>`
-      + 
-        + disc / circle / square    
-        + upper-alpha (A,B,C)
-        + lower-alpha (a,b,c)
-        + decimal (1,2,3)
-        + decimal-leading-zero (01,02,03)
-        + 외국어 등 여러가지 선택가능 
+      * `<list-stye-position>` : 리스트 위치(내부, 외부)를 선택
+        + outside (기본값) 
+        + insid (들여쓰기, 마치 본문처럼 보일 수 있다.)
+        + 리스트 여백은 `<ul>`요소의 padding 속성으로 조절할 수 있다. 
+  
+      * `<list-style-image>` : 기본 리스트 타입대신 이미지를 사용
+        + 이미지 주소 url을 입력 
+        + url("../image/star.svg")
 
-    * list-stye-position : outside(기본값) / insid(들여쓰기)
+      * `<list-style>` : 속기 유형 작성법(단축형) **실무에서 많이 사용**
+        + square url("star.svg") inside    
+      
+
+        [사용 예시]
+
+        ```css
+        /*[초기화]*/
+        list-style-type: none; (목록 스타일 지우기)
+        padding-left: 0; (들여쓰기 X)
+        ```
+        ```css
+         ul{ list-style: none inside url("../images/stat.  svg") }
+         /* 또는 */ 
+         ul{ list-style: none  url("../images/stat.  svg") }
+         /* 또는 */ 
+         ul{ list-style:  url("../images/stat.svg") }
+        ```
+        ```css
+        /*margin과 padding*/
+        li {
+          line-height: 2; 줄 간격
+          margin: 10px 0; (배경색이 들어가지 않는다.)
+          /* 또는 padding: 10px 0; (배경색이 들어간다.)*/
+        }
+        ```
+
+  ### HTML 정의 목록 스타일링
+    * `<dl>`, `<dt>`, `<dd>`
 
       ```css
-      list-style-type: none; (목록 스타일 지우기)
-      padding-left: 0; (들여쓰기 X)
+      /*[초기화]*/
+      dl {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      
+      dd {
+        margin-left: 0;
+      }
       ```
-    * list-style-image : url("../image/star.svg")
-    * **list-style** : square url("star.svg") inside **(속기 유형 작성법) 실무에서 많이 사용**
+
+  ### HTML 속성을 사용한 순차 목록 출력 설정
+    * `<start>`, `<reversed>``<value>` 속성
+
+      ```css
+      /*입력한 값부터 순서 시작 (9,10,11,12)*/
+      <ol start="9"> 
+      
+      /*리버스 출력 설정, 반대로 출력 (9,8,7,6)*/
+      <ol start="9" reversed>
+      /
+      
+      /*<li>요소에 임의의 숫자값을 입력할 수도 있다.*/
+      <li value="20">
+      <li value="30">
+      <li value="40">
+      ```
+
+## CSS 배경 스타일링
+  
+  ### 배경 색: background-color
+    * 배경의 색상을 넣는 속성
+    * 속성 값은 rgb() 또는 #으로 시작하는 HEX, 색상 이름 등이 들어 갈 수 있습니다.
+
+     ```css
+     iv {
+       background-color: #eee;
+     }
+     ```
+    
+  ### 배경 위치: background-position
+    * background-image의 위치 설정
+
+      * 'left','center','right'로 표현 할 수 있습니다.
+      * px이나 %등의 속성이 들어 올 수 있습니다.
+      * 값은 x 축 y 축으로 두 개를 띄어쓰기로 구분하여 넣습니다.
+
+      |좌표|값|이동|
+      |---|---|---|
+      |x|양수, 값 ↑|오른쪽|
+      |y|양수, 값 ↑|아래쪽|
+      |x|음수, 값 ↓|왼쪽|
+      |y|음수, 값 ↓|위쪽|
+
+      ```css
+      div {
+        background-position: 200px 20px; 
+
+         /* 또는 */
+        background-position: 20% 0%; /* x y */
+
+         /* 또는 */
+        background-position: left top; /*기본값*/
+      }
+      ```
+
+  ### 배경 반복: background-repeat
+    * background-image의 반복 여부 설정
+
+    ```css
+   div {
+     background-repeat: repeat; /*기본값*/ 
+     background-repeat: no-repeat; /*반복 없음*/
+     background-repeat: repeat-y; /*y축으로 배경이미지 반복*/
+     background-repeat: repeat-x; /*x축으로 배경이미지 반복*/
+   }
+    ```
+
+  ### 배경 고정: background-attachment
+    * 화면 스크롤이 있을 경우 배경이미지를 고정할 수 있다
+    * background-position의 기준 점을 뷰포트(웹 페이지 화면)로 변경할 수 있습니다.
   
       ```css
-       ul{ list-style: none inside url("../images/stat.svg") }
+      div {
+        background-attachment : fixed; 
+      }
       ```
+
+
+  ### 배경 크기: background-size
+    * 배경 이미지의 크기 설정
+
+  ### background
+    * 위에 속성들을 하나로 묶어서 사용
+
+      ```css
+      /* transparent는 기본값이기 때문에 안넣어도 상관X */
+      div{
+        background: 
+        transparent 
+        url('../img/aa.svg') 
+        no-repeat 
+        10px 40px 
+        fixed;
+      }
+      ```
+
+  ### 배경 이미지: background-image
+
+   ```css
+   .bg-image {
+     background: url('../image/aaa.jpg'); no-repaet center center;
+     background-size: contain; /*이미지를 모두 박스 안에 포함한다*/
+     background-size: cover; /*보여지는 부분은 위치속성으로 설정 가능, 화면 크기에 따라 사진의 크기가 달라지기 때문에 확인하기*/
+   }
+   ```
+
+  ### 패던(Patterns) 디자인
+
+    ```css
+    .is-floral {
+      background: #000 url("../images/oriental-floral-pattern.svg");
+      background-size: 50px; /* 패턴이미지 크기 조정 */
+    }
+    ```
+    ```css
+    .is-model {
+      background: url("../images/model.jpg") center;
+      background-size: 150px;
+    }
+    ```
+
+  ### 배경 클리핑: background-clip
+    * 배경이미지의 클리핑 영역 설정 content, padding, border
+  
+    ```css
+    .background-clip {
+      box-sizing: border-box;
+      border: 20px solid rgba(0, 0, 0, 2);
+      padding: 20px;
+      background: url("../images/model.jpg") center;
+      background-size: contain;
+      background-clip: content-box; /*클립 속성을 항상 아래쪽에 위치*/
+      background-origin: border-box; /*기본값*/
+    }
+    ```
+
+  ### 배경 기준: background-origin
+    * 배경이미지의 시작에 대한 기준점 설정 content, padding, border
+
+---
+# 4day
+
+ * 
+
+
+  ## 플로팅(Floating) 레이아웃
+   * 일반적인 레이아웃 흐름(Normal Layout Flow)
+     + HTML이 기본적으로 화면에 렌더링하는 것을 말함. 마크업 순서대로 위에서 부터 아래 방향으로 나열(CSS 미반영)
+
+   * 플로팅 레이아웃(Floating)
+   * float 속성을 사용해 박스를 왼쪽(left) 또는 오른쪽(right)으로 **"부유"**시키는 레이아웃 기법.
+
+  ### [`<float>` 속성]
+   * 속성 : `<none>`(기본값), `<left>`, `<right>`
+
+      ```css
+      /* 부모요소는 float으로만 구성된 자식요소를 감싸지 못함*/
+      /* Clearfix, 가상요소를 사용해서 문제 해결가능*/
+      .box.is-blue {
+        float: left;
+        width: 200px;
+      }
+      .box.is-yellow {
+        float: left;
+      }
+      .box.is-green {
+        float: left;
+      }
+
+      .clear {
+        clear: both;
+      }
+      ```
+      ```html
+      <!-- 이해를 돕기위한 코드 많이 사용하지 X -->
+        <div class="box-group">
+          <div class="box is-blue"></div>
+          <div class="box is-yellow"></div>
+          <div class="box is-green"></div>
+          <div class="clear"></div>
+        </div>
+      </section>
+      ```
+
+  ### [`<clear>` 속성]
+    
+    + float를 해제시키는 속성 (부모요소가 자식을 감쌀 수 있게 함)
+
+    ```css
+    .clear {
+      clear: none; /**/
+      clear: left; /* float: left 해지 */
+      clear: right; /*  */
+      clear: both; /* 주로 많이 씀 */
+    }
+
+    ```
+
+  ### 가상 요소 `<::after>` 사용
+    * 참고 : <https://takeuu.tistory.com/60>
+    
+      ```css
+      .clearfix::after {
+        content: '';
+        display: block;
+        clear: both;
+        visibility: hidden;
+      }
+      ```
+
+  ## 유저 인터렉션 속성
+  
+    ### `<hidden>` 속성
+
+      - 모든 HTML 요소들은 hidden 속성을 가질 수 있으며, 요소에 설정되면 요소가아직 페이지의 현재 상태와 직접적으로 관련이 없거나 페이지의 다른 부분에서 내용을 재사용하도록 선언하는 데 사용된다. 브라우저는 hidden 속성이 설정된 요소를 화면에 렌더링하지 않는다.
+
+          [사용 예시]
+  
+          ```html
+          <div class="container">
+  
+          <img
+            class="drag-element"
+            src="images/fashion-model-pose.png"
+            alt="패션 모델"
+            width="276" height="417">
+  
+            <div class="dropzone">
+              <p>Drop Zone</p>
+            </div>
+          </div>
+          ```
+
+    ### tabindex 속성
+      - 요소를 키보드로 탐색할 수 있도록 설정하거나, 제외 또는 순서대로 탐색할 수 있도록 설정할 수 있다. 
+      - **"탭(Tab) 이동"**이란 용어는 순차적 포커스 탐색을 사용하여 포커스 가능(Focusable) 요소 사이를 이동하는 것을 의미한다.
+
+        [기본적으로 포커스 가능한 요소들](참고: https://allyjs.io/data-tables/focusable.html)
+          폼 컨트롤 요소들           : input, button, textarea, select 등
+          href 속성을 가진 요소들     : a, area
+          controls 속성을 가진 요소들 : video, audio
+
+        [사용 예시]
+
+          // [양수] 탭 포커스 순서(2번째)를 설정한다.
+          // (논리적 포커스 흐름에 방해가 되기에 사용을 권장하지 않음)
+          // button요소는 기본적으로 Tab이 발생 됨 
+          <button 
+            type="button"
+            class="button is-play"
+            tabindex="2">재생</button>
+
+          // [0] div 요소는 포커스를 가지지 않는 요소이지만, 포커스를 적용할 수 있게 된다.
+          // 컴포넌트 제작 시, 비 포커스 요소에 포커스를 적용해야 할 경우 유용하게 사용됨.
+          <div tabindex="0"></div>
+
+          // [-1] 일반적인 포커스 순서에서 제외시킬 수 있다.
+          // (JavaScript 프로그래밍으로 포커스 처리 가능)
+          // 컴포넌트의 일부 요소를 일시적으로 포커스 순서에서 제외한 후,
+          // 목표에 따라 포커스를 다시 활성화 처리할 수 있다.
+          // <a>요소는 기본적으로 포커스를 가지고 있다.
+          <ol class="TOC">
+            <li><a href="#pinch">위기</a></li>
+            <li><a href="#overcome" tabindex="-1">극복</a></li>
+          </ol>
+
+
+    ### accesskey 속성
+      - 모든 HTML 요소는 accesskey 속성을 가질 수있다. 속성 값은 키보드 단축키로 설정된다.
+      - 하지만 accesskey 속성의 단축키는 브라우저와 운영체제 플랫폼에 의존하고 있어 운영체제마다 사용자 경험이 달라진다. 쉽게 말해 Windows 사용자와 Mac OSX 사용자가 사용하는 단축키는 달라진다. (iPhone과 Android 사용자 경험이 다른 것처럼)
+
+        [브라우저 × 운영체제 플랫폼]
+          Windows
+            Chrome  : Alt + 단축키
+            IE      : Alt + 단축키
+            Safari  : Alt + 단축키
+            Opera   : Alt + 단축키
+            Firefox : Alt + Shift + 단축키
+          Mac OSX
+            Chrome  : Control + Alt + 단축키
+            Safari  : Control + Alt + 단축키
+            Opera   : Control + Alt + 단축키
+            Firefox : Control + 단축키
+          Linux
+            Chrome  : Alt + 단축키
+            Opera   : Alt + 단축키
+            Firefox : Alt + Shift + 단축키
+
+        [사용 예시]
+          <button
+            type="button"
+            class="button is-collect"
+            accesskey="C"
+            onclick="collect()">
+            수집
+          </button>
+
+
+    ### contenteditable 속성
+      - contenteditable 속성이 설정된 요소는 사용자가 직접 편집할 수 있도록 만들어 준다.
+        + 값이 true 또는 빈 문자열("")일 경우 편집 허용.
+        + 값이 false 일 경우 편집을 허용하지 않음.
+
+        [사용 예시]
+        <p contenteditable>
+          ...
+        </p>
+
+
+    ### draggable 속성
+      - 모든 HTML 요소는 draggable 속성을 가질 수 있다.
+        값이 true 일 경우 드래그(Drag) 가능.
+        값이 false 또는 빈 문자열("")일 경우 드래그 불가능.
+      - 마우스에 의존하기 때문에 마우스를 사용하지 못하는 사용자에게 불편하다.
+
+        [사용 예시]
+        <p draggable="true">
+          ...
+        </p>
+
+    ### 좋은 프론트엔드 개발자의 자격 요건
+      * 프론트엔드 개발자는 모든 사용자를 고려하는 설계자가 되야 한다. 
+      * 구조를 탄탄하고 의미적으로 구성할 수 있어야 한다.
+      * 디자이너가 만든 비주얼을 화면에 구성할 수 있는 표현 능력이 가능해야 한다. (CSS)
+      * 사회적 약자 계층도 이용할 수 있도록 서비스를 만들어야 한다. 
+
+
+
 
 
 
