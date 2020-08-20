@@ -542,7 +542,6 @@
      - `overflow-x` : x축 방향만 overflow 설정을 수행합니다.
      - `overflow-y` : y축 방향만 overflow 설정을 수행합니다.
 
----
 ## 3day
 
   ### 질문
