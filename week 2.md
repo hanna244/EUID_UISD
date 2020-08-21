@@ -315,19 +315,21 @@
 
   * Git 이란?    
    버전 관리 시스템(VCS), 무료, 공개 소프트웨어 
-    |이름| 설명|
-    |---|---|
-    |Tracked|관리대상임|
-    |Untracked|관리대상이 아님|
-    |Modified|수정함|
-    |Unmodified|수정하지 않음|
-    | Staged|커밋으로 저장소에 기록|   
-    |soft |현재 인덱스, 워킹 트리를 유지한 채로 HEAD를 변경|
-    |mixed| default 옵션. 인덱스는 취소한채로 워킹트리만 그대로|
-    |hard |인덱스와 워킹트리 변화를 모두 제거하고 HEAD를 변경|
-    |Gitlog|Git 기록|
-    |브랜치(Branch)|새로운 가지를 뻗는 것을 의미, 기존 개발에 이어서 작업하지 않고 새롭게 가지를 쳐서(브랜치) 작업할 수 있다.|
-    |머지(Merge)|각각의 브랜치에서 작업한 코드를 합치는 기능|
+    |-|이름| 설명|
+    |---|---|---|
+    ||Tracked|관리대상임|
+    |U|Untracked|관리대상이 아님/ 변경된 내용은 감지 하지만 현재 추적되지 않은 상태|
+    |M|Modified|수정함|
+    ||Unmodified|수정하지 않음|
+    |A|Add|인덱스에 추가됨|
+    ||Staged|커밋으로 저장소에 기록|   
+    ||soft |현재 인덱스, 워킹 트리를 유지한 채로 HEAD를 변경|
+    ||HEAD|로컬 저장소|
+    ||mixed| default 옵션. 인덱스는 취소한채로 워킹트리만 그대로|
+    ||hard |인덱스와 워킹트리 변화를 모두 제거하고 HEAD를 변경|
+    ||Gitlog|Git 기록|
+    ||브랜치(Branch)|새로운 가지를 뻗는 것을 의미, 기존 개발에 이어서 작업하지 않고 새롭게 가지를 쳐서(브랜치) 작업할 수 있다.|
+    ||머지(Merge)|각각의 브랜치에서 작업한 코드를 합치는 기능|
 
     + Git 사용 중 자주 만나는 이슈 정리 : <https://parksb.github.io/article/28.html>
 
@@ -340,6 +342,7 @@
       - 코드 변경 이력 확인 가능, 코드 복구 가능
       - 코드 이전 이력과 비교 가능
     + <https://aonee.tistory.com/15>
+
 
 
 ## [CSS] 박스 모델
@@ -1120,9 +1123,306 @@
    * 디자이너가 만든 비주얼을 화면에 구성할 수 있는 표현 능력이 가능해야 한다. (CSS)
    * 사회적 약자 계층도 이용할 수 있도록 서비스를 만들어야 한다. 
 
+# 5day
+
+질문하기
+charset 선언
+  ## 문서 메타데이터 요소들
+
+  `<head>` 요소
+   - 문서의 제목과 스타일시트, 스크립트 링크 또는 선언을 포함하는 문서의 일반적인 정보(메타데이터)를 제공한다.
+   - 대부분 브라우저는 마크업에서 <head> 요소가 생략될 경우, 자동으로 <head> 요소를 생성하지만 일부는 그렇지 않다.
+
+     * [자동으로 <head> 요소를 생성하지 않는 브라우저 환경]
+       - Android <= 1.6
+       - iPhone  <= 3.1.3
+       - Opera   <= 9.27
+       - Safari  <= 3.2.1.
+       - Nokia 90
 
 
+  `<title>` 요소
+   - 브라우저의 타이틀 바(Title Bar)나 페이지 탭에 보여지는 문서의 제목을 정의.
+        텍스트만 포함할 수 있으며 포함된 **태그들은 해석되지 않음.**
 
 
+  `<meta>` 요소
+   - 다른 메타 요소들(`<title>`, `<base>`, `<link>`, `<style>`)로 나타낼 수 없는 메타데이터를 정의할 때 사용.
+
+     * [메타데이터의 종류]
+
+      + charset이 설정된 경우:
+        -  charset 선언. 즉 웹페이지를 작성하는 일련의 형식에 사용되는 **문자 인코딩(charset)**에 대한 설정.
+        -  이 속성보다 요소의 **lang 속성이 우선**하여 적용됨. (즉, 덮어쓰기 됨. 예: `<div lang="fr">`)
+          
+
+      + http-equiv 속성이 설정된 경우:
+        -  pragma 지시어(Directive)로 일반적으로 웹서버가 제공하는 웹페이지가 어떻게 제공되어야 하는지에 대한 정보를 제공.
+
+          ```html
+            [예시]
+            ✤ HTML 5에서는 더 이상 아래와 같이 사용되길 권장하지 않음.
+              <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+            ✤ 3초 뒤에 url 값에 설정된 페이지로 이동하게 됨.
+              <meta http-equiv="refresh" content="3url=https://google.com">
+          ```
+
+      + name 속성이 설정된 경우:
+        - 문서 수준 메타 데이터의 이름을 정의하며, content 속성 값을 통해 설정.
+
+          * [속성]
+            - charset
+            - http-equiv
+            - content   
+              이 속성은 컨텍스트에 따라 http-equiv또는 name속성 과 연결된 값을 제공.
+
+            - name
+              - application name:
+                + 웹 페이지에서 실행중인 웹 애플리케이션 이름 정의.
+                + 간단한 웹 페이지는 application-name 메타를 정의해서는 안됨.
+                ```html 
+                <meta name+"application-name" content="LectureApp">
+                ```
+              - description   
+                페이지의 내용에 대한 짧고 정확한 요약을 설정.
+              - keywords   
+                쉼표로 구분된 문자열로 페이지의 내용과 관련된 키워드를 설정.
+              - author   
+                문서 작성자의 이름을 정의.
+                ```html
+                  <meta name="description" content="웹페이지 내용을 요약해서 기술">
+                  <meta name="keywords" content="웹페이지에 주요 키워드를 콤마(,)로 구분하여 작성.">
+                  <meta name="author" content="웹페이지 제작자">
+                ```
+            - robots
+              - 검색 로봇이 웹 페이지를 크롤링하는 동작에 대한 정의.   
+              - 웹 크롤러(Web Crawler)란?
+                + 웹페이지를 방문하여 자동적으로 수집하는 프로그램
+              - index와 noindex, follow와 unfollow는 같이 사용 X
+              - 참고 : <https://developer.mozilla.org/ko/docs/Web/HTML/Element/meta/name>
+
+                  - index(기본값) : 페이지 내용을 색인한다.
+                  - noindex : 크롤러가 페이지를 색인하지 않도록 요청합니다.
+                  - follow(기본값) : 크롤러가 페이지 내의 링크를 따라갈 수 있습니다. 
+                  - nofollow ()
+                  - noarchive : 크롤러가 페이지를 캐시에 포함하지 않도록 요청합니다.
+                  - nosnippet : 검색 엔진 결과에 어떤 설명도 표시하지 않도록 지정합니다.
+                  - noimageindex : 크롤러가 페이지 이미지를 색인하지 않도록 요청합니다.
+                ```html
+                  <meta name="robots" content="index">
+                ```
+            - viewport
+                **(비표준)** 초기 viewport 크기 설정에 관한 힌트를 제공.
+                이 속성은 몇 개의 모바일 디바이스에 의해서만 사용됨.
+                  - **width**
+                  - height
+                  - **initial-scale**
+                  - maximum-scale
+                  - minimum-scale
+                  - user-scalable
+                ```html
+                <!-- 모바일에서 아래의 설정이 없을 경우 기본적으로 960px로 나타난다. -->
+                  <meta name="viewport"   content="width=480px">
+                  <meta name="viewport" content="width=device-width, initial-scale=1"> 기기에 폭에 맞춰 화면 최적화, initial-scale : 화면을 배율로 설정
+                ```
 
 
+   `<link>` 요소   
+      - 현재 문서와 외부 리소스와의 관계(relation)를 명시. 
+        이 요소는 **스타일시트를 링크 하는데 가장 많이 사용됨.**
+
+   * [속성]
+     - rel      : 문서와의 관계 명시.
+     - type     : 링크된 리소스 MIME 타입 정의. (기본 적용: text/css) text/html; text/javascript
+     - href     : 링크된 리소스 URL 설정.
+     - hreflang : 링크된 리소스의 언어 설정.
+     - media    : 링크된 리소스가 적용될 미디어(media)를 설정.
+
+      [사용 예시]
+
+        기본 스타일시트 설정
+        ```html
+          <link href="style.css" rel="stylesheet">
+        ```
+
+     * 대체 스타일시트 설정: View > Page Style 메뉴에서 사용할 스타일시트를 고를 수 있다. (Chrome은 해당 X)
+     ```html
+       <link href="default.css" rel="stylesheet" title="기본 스타일">
+       <link href="fancy.css" rel="alternate stylesheet" title="팬시">
+       <link href="basic.css" rel="alternate stylesheet" title="베이직">
+     ```
+
+
+   `<style>` 요소   
+      - 문서나 문서 일부에 대한 스타일 정보를 포함.
+        기본적으로 CSS 언어가 사용됨.
+
+   * [속성]
+     - type
+     - media
+     - scoped
+     - title
+     - disabled : 허용하지 않음
+
+        [사용 예시]
+
+          ```html
+          일반적인 사용 예:
+            <style type="text/css"> /* html에서는 기본값이기 때문에 생략해도 무방하다. */
+              body {
+                color: #323232;
+              }
+            </style>
+          ```
+
+          scoped 속성 사용 예: ❖ 현재 제대로 지원하는 브라우저 없음.
+          ```html
+            <section>
+              <style scoped>
+                p { color: #902c1f; }
+              </style>
+              <p> ... </p>
+            </section>
+          ```
+
+
+   `<base>` 요소   
+      - 문서에 포함된 모든 상대 URL들의 기준 URL을 나타냄.
+        한 문서에 하나의 <base> 요소만 존재해야 함.
+
+   [사용 예시]
+  ```html
+    <base target="_blank" href="http://www.example.com">
+  ```
+
+  ## 포지셔닝 레이아웃
+   * 포지셔닝은 **웹브라우저가 렌더링하는 기본 레이아웃 흐름(Normal Layout Flow)을 재정의**하여 흥미로운 효과를 만들어 낼 때 사용합니다. 예를 들어 기본 레이아웃 흐름에서 레이아웃 내부 일부 요소의 위치를 조정하려면 포지셔닝을 사용하여 조정할 수 있습니다.
+   * 페이지의 다른 부분 위에 떠있는 UI 요소를 만들고 싶거나, 페이지의 스크롤과 상관없이 항상 브라우저 창의 동일한 위치에 자리한 UI요소를 만들고자 한다면 포지셔닝을 사용합니다.
+
+     * 포지셔닝(Positioning) 레이아웃 유형
+        + [정적(static) 위치 (기본 값)]    
+        : 문서의 흐름에 맞춰 배치
+        + [상대(relative) 위치]    
+        : 이전 요소에 자연스럽게 연결해 배치, 위치 조정 가능
+          - 자신의 위치를 기준으로 한 상대위치 값을 지정한다. (t r b l)
+          - `<float>` 요소와 다르게 자신의 원래 위치를 기억하고 그 위치를 기준으로 이동한다. 
+          - `<position>`을 사용해서 요소가 부모 영역을 벗어나게 된다면 `<overflow: hidden>`을 사용해서 벗어난 영역을 감출 수 있다. 
+          ```css
+            .box-group {
+              overflow: hidden;
+            }
+          ```
+          ```css
+            /* 상대(relative) 위치 설정 */ 
+            .box.is-blue {
+              position: relative;
+              top: 30px;
+              right: -100px;
+              z-index: 1; 
+            }
+            
+            .box.is-yellow {
+              position: relative;
+              top: -30px;
+              left: 40px;
+              z-index: 3;
+            }
+            
+            .box.is-green {
+              position: relative;
+              bottom: 300px;
+              left: 20px;
+              z-index: 2;
+            }
+          ```
+
+        + [**절대(absolute) 위치**] : 원하는 위치 배정
+          - 스크롤을 내리면 사라짐
+          - 많이 사용되는 기술
+          - 부모요소 안에서 위치를 조정하고 싶다면?
+            + 부모를 설정해준다. 
+              - 자신을 포함하는 가장 가까운 부모 중에 포지션 값이 설정되어 있는(기본값인 `<static>`이 아닌 값)것을 부모로 인식을 한다. 
+          - `<absolute>`를 **자식요소**로 설정했을 때    
+          주로 `<relative>`를 **부모요소**로 사용해준다.
+            + 만약 부모가 `<absolute>`라면 위치를 지정할 수 있게 된다. 원래 자신이 가지고 있던 공간을 아래요소가 인식을 못하기 때문에 아래요소는 위로 올라오려는 성질을 보여준다. 결국 레이아웃이 무너지는 형태가 나타난다. 
+          
+          ```css
+          /* 절대(absolute) 위치 설정 */
+            .box.is-yellow {
+              position: absolute;
+              z-index: 10;
+              top: 0;
+              right: 0;
+            }
+            
+            .box.is-green {
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+            
+            .box.is-blue {
+              position: absolute;  
+              top: 0;
+              right: 0;
+            }
+            .box-group {
+              position: relative;
+            }
+          ```
+          - `<relative>`와 `<absolute>`의 차이
+              - `<relative>`은 원래 박스가 가지고 있는 공간을 그대로 지키며 위치 이동을 했다면 `<absolute>`는 마치 `<float>`처럼 자신의 공간을 뒤에 나오는 요소로 하여금 인식하지 못하게끔 한다. 그리고 그 위치를 다른 요소가 차지하게 된다. 
+        
+          - `<float>`와 `<absolute>`의 차이
+            - `<float>`는 단순히 좌/우로만 이동한다면 `<absolute>` 페이지 내에서 자유롭게 배치 조정이 가능하다. 
+
+        + [고정(fixed) 위치]   
+        : 지정한 위치에 고정
+          ```css
+          [박스 안에 스크롤이 생기게 된다.]
+            .box-group {
+              overflow: auto;
+            }
+
+            /* 스크롤 길이 */
+            .box-wrapper {
+              height: 1600px;
+            }
+          ```
+
+          * `<absolute>`와 `<fixed>`의 차이
+            + `<absolute>`는 부모를 찾는다 그리고 부모 내에서 위치를 조정 할 수 있다. 만야 자신을 포함 하는 가장 가까운 부모들이 모두 포지션 값을 갖고 있지 않는다면(모두 `<static>`값을 가진다면) 자신의 최종 부모는 뷰포트가 된다. 
+            + `<fixed>`는 부모를 찾지 않고 무조건 사용자가 보는 화면단(뷰포트)를 기준점으로 고정이 가능해진다.
+ 
+          ```css  
+          /* 고정(fixed) 위치 설정 */
+          .box.is-yellow {
+            position: fixed;
+            top: initial; 
+            left: 0;
+            bottom: 0;
+          }
+          * 절대 위치 설정의 top값이 0으로 설정되어 있어서 
+            bottom 속성이 적용이 안됐었다. 그럴땐 Initial을 적용해서 top속성을 초기화 시킨다. 
+
+        + [달라붙는(sticky) 위치]   
+        : 인터넷 익스플로어 미지원.(단, 자바스크립트를 사용해서 9이상의 버전에서 지원 가능)
+          ```css
+            /* 달라붙는(sticky) 위치 설정 */
+            .box-group .box {
+              position: sticky;
+              outline: 3px solid red;
+              top: 0;
+              margin-bottom: 100px;
+            }
+          ```
+        + static 속성을 제외한 나머지는 좌표를 이용하여 위치를 조절할 수 있다.
+      
+
+        + `<z-index>` 
+          + 요소들의 수직 위치를 조정. 값은 정수이며, 숫자가 클 수록 위로 올라오고 숫자가 작을 수록 아래로 내려간다. 
+          + 만약 각각 다른 요소들에 z-index값을 같게 했을 때, 코드 상 나중에 입력한 것일 수록 위로 올라온다. 
+          + 값을 10, 100단위로 설정해야 작업을 수월하게 할 수 있음
+          + z-index 참고 : <https://www.codingfactory.net/10878>
+
+    
