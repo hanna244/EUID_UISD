@@ -435,84 +435,162 @@ UI 디자인에 필요한 그래픽 디자인 툴이다. <br>
 Window와 Mac 상관없이 UI 편집이 가능하다
 </p>
 
+---
 # 3day
 
-## CSS(Cascading Style Sheets)
+## CSS란? (Cascading Style Sheets)
+  - CSS 언어는 HTML 문서인 Sheets를 스타일링 하는 역할을 하는데 일종의 규칙을 가지고 있는 스타일 언어이다.  
 
-CSS는 HTML 문서를 스타일링 하는 언어이다
+  * [참고]
+    + CSS Current Work(CSS 스펙 등 CSS의 최신 기술등 ) : https://www.w3.org/Style/CSS/current-work  
  
-## 1. css 기본 문법
+## css 기본 문법
 
-```html
-  선택자 {
-    속성1: 값;
-    속성2: 값2;
-  }
-```
-```html
- h1 {
-   color: deepskyblue;
-   font-size: 2em;
- }
-```
+  ```css
+    선택자(대상) {        /* 대상 선택자, { 선언구간 시작 */
+        속성1: 값;    /* ; 선언문 구분 */
+        속성2: 값2;   /* : 속성, 값 구분 */
+    }               /* 선언구간 종료 */
+  ```
+  ```css
+  <html>
+      <head>
+          <style type="text/css"> /* MIME type 지정, 하지만 html 5 에서는 생략 가능 */
+            h1 {
+                color: deeppink;
+                font-size: 2em;
+            }
+          </style>
+      </head>
+      <body>
+          <h1>Embed Style Sheet</h1>
+      </body>
+  </html>
+  ```
+  + css는 html 문서 내에 포함시킬 수 있다 
+  + **`<head>` 내부에서만 사용 가능**하고 `<style>` 태그를 사용해서 css코드 넣기
+  + `<text/css>` MIME type 지정, 하지만 html 5 에서는 **생략 가능**
 
-+ css는 html 문서 내에 포함시킬 수 있다 
-+ `<head>` 내부에서만 사용 가능하고 `<style>` 태그를 사용해서 css코드 넣기
-+ MIME type을 지정하는데 HTML5에서는 기본 생략
-  
- 
+  * [참고]
+    + MIME type이란?
+      - MIME 타입이란 클라이언트에게 전송된 문서의 다양성을 알려주기 위한 메커니즘입니다
+      - 웹에서 파일의 확장자는 별  의미가 없습니다. 그러므로, 각 문서와 함께 올바른 MIME 타입을 전송하도록, 서버가 정확히 설정하는 것이 중요합니다. 브라우저들은 리소스를 내려받았을 때 해야 할 기본 동작이 무엇인지를 결정하기 위해 대게 MIME 타입을 사용합니다.
+      - MIME 타입은 대소문자를 구분하지는 않지만 전통적으로 소문자로 쓰여집니다.
+      - MIME 타입 : <https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types>
 
-### 스타일 방법 3가지
 
-```html 
-<link
-  href="css/style.css"
-  type="text/css"
-  rel="stylesheet"
-/>
-```
+## 스타일 방법
+  + CSS 코드를 HTML 문서에 적용하여 스타일링하는 3가지 방법
+    - 인라인 스타일 (inline style)
+    - 인터널 스타일 (iternal style)
+    - 익스터널 스타일 (external style)
 
-+ 인라인 스타일
-   * 요소 내부에 style 속성을 이용하여 css 코드 작성
-   ```html
-   <section style="color: #903000; text-decoration: none:">
-   ```
 
-+ 인터널 스타일
+### 인라인 스타일
+  * 요소에 직접 스타일링을 추가하는 방법
+    + 요소 내부에 style 속성을 이용하여 css 코드 작성
+
+    ```html
+    <html>
+      <head>
+        <link
+        href="css/style.css" 
+        type="text/css"   
+        rel="stylesheet"     
+        />
+      </head>
+      <body>
+          <h1>Embed Style Sheet</h1>
+      </body>
+    </html>
+    ```
+    * **`<href>` 특성에 스타일 시트의 경로**를, `<rel>` 특성에 stylesheet을 사용합니다. `<rel>`은 관계(relationship)를 뜻하며, ;**현재 문서와 연결한 아이템의 관계**가 어떻게 되는지 설명하므로 `<link>` 요소의 제일 중요한 기능 중 하나
+    * [참고]
+      + `<link>`: 외부 리소스 연결 요소 : <https://developer.mozilla.org/ko/docs/Web/HTML/Element/link> 
+    
+    ```html
+    <body>
+    <section style="color: #903000" id="about-css">
+    <h1 style="color: tan">
+      <dfn id="dfn-css">
+        <abbr 
+        style="cursor: help; text-decoration: none" 
+        title="Cascading Style Sheets">CSS
+      </abbr>
+    </dfn> 언어란?
+    </h1>
+    </body>
+    ```
+   
+### 인터널 스타일
+  *  CSS 코드를 HTML 문서에 포함
+
   ```html
-  <style>
-   section {
-    color: #903000;
-   }
+  <head>
+    <style>
+      section {
+        color: #903000;
+      }
+      h1 {
+        color: tan;
+      }
+      abbr {
+        cursor: help; 
+        text-decoration: none;
+      }
   </style>
+  </head>
   ```
 
-+ 익스터널 스타일
-   * Link 요소를 사용하여 외부에 있는 css 파일을 적용하는 방법
+### ★익스터널 스타일★
+   * CSS 파일을 HTML 문서에 연결
+     = Link 요소를 사용하여 외부에 있는 css 파일을 적용하는 방법
+
    ```html
+   <head>
    <link rel="stylesheet" href="css/style.css">
+   </head>
+   ```
+   ```css
+   section {
+     color: #903000;
+   }
+   h1 {
+     color: tan;
+   }
+   abbr {
+     cursor: help; 
+     text-decoration: none;
+   }
    ```
 
-## 2.css 선택자
+
+
+## css 선택자
+  * CSS는 HTML요소를 선택하는데 있어 다양한 선택자 옵션을 제공합니다. 
 
 ### 1) CSS 심플 선택자
 
 #### 요소 선택자(Elements Type Selector) `figure { ... }`
-  * 문서 내의 특정 요소를 선택해서 편집 가능 
+  * 요소(타입, 태그) 선택자
+  * HTML의 특정 요소를 선택해서 꾸며주는 것 
   * 우선권을 갖고 있음 
 
 #### 그룹핑(Grouping) `a, abbr { ... }`
+  * 그룹 선택자
+  * 여러개의 요소(태그) 선택자를 콤마(,)를 사용해서 묶어주어 일괄적으로 디자인을 적용
   * 공통적으로 스타일을 적용하고 싶을 때는 요소 선택자를 묶어서 꾸며줄 수 있다. 
 
 #### 전체 선택자(Universal Selector) `* { ... }`
-  * *를 사용한다 
-  * 모든 요소에 스타일을 적용할 수 있다. 
+  * `<*>` 별표 모양은 HTML에 존재하는 모든 요소를 가리킨다.모든 요소에 일괄적으로 스타일링을 주고자 할 때 사용
 
 #### 자손 선택자(Descendent Selector) `h1 abbr { ... }`
   *포함하고 있는 요소를 꾸밀 때 사용
 
 #### 클래스 선택자(Class Selector) `.class { ... }`
-  * .class (대소문자 구분하기 때문에 주의)
+  * 앞의 `<.>`으로 구분 한다. .class (대소문자 구분하기 때문에 주의)
+  * 예를 들어 ) 
+    + `<.p.note>` : 클래스의 이름이 note인 요소를 찾는데 단락요소(p)가 클래스를 note를 가지고 있을 때 값에 적힌 디자인을 해라. 
 
 #### 멀티 클래스 선택자(Mutil Class Selector) `.class1.class2 { ... }`
   * 1) .class1.class2 : 하나의 요소가 두 개의 class를 가진 형태
