@@ -429,3 +429,201 @@
       * [속성]   
         `<span>`: colgroup 요소가 col을 포함하지 않을 경우, 열 묶음 개수 설정
 
+---
+# 3day
+
+## CSS - 그레디언트
+
+  * [기본 문법]
+    - 첫 시작(0%)과 끝(100%)의 퍼센트는 입력하지 않아도 적용 가능
+    ```css
+      body {
+        background: linear-gradient(
+          각도,      /* 또는 방향(목적지) */
+          시작 색상, 
+          끝 색상    /* 중간색상 추가 가능 */
+          ); 
+      }
+    ```
+
+### 선형 그레디언트 
+
+  * 적용
+    ```css
+      body {
+        background: linear-gradient(90deg, #0e0f12, #f7e763);
+      
+      /* 
+      90deg  : to right
+      180deg : to bottom
+      0deg   : to top
+      45deg  : to top right
+      -45deg : to top left 
+      */ 
+
+      /* [색상을 선명하게 구문지어 주고 싶다면] */
+
+        background: linear-gradient(   
+          45deg, 
+          #ff3400 40%,
+          #45d5bf 40%,
+          #45d5bf 60%,
+          #3a2c76 60%,
+          #3a2c76
+          );
+      }
+    ```
+
+### 원형 그레디언트
+  * 원 모양의 값 (화면 폭에 따라 원의 모양, 크기가 달라짐)
+    + `circle`  정원형 
+    + `ellipse` 기본값(생략 가능)
+  * `farthest-side` 기본값    
+  `closest-side` 정원형의 크기와 비슷하게 그라데이션이 나타남
+  ```css
+    body {
+      background: radial-gradient(
+        #6c52da
+        #3a2c76
+        );
+    
+      background: radial-gradient(
+        circle closest-side,
+        #6c52da 25%,
+        #45d5bf 25%,
+        #45d5bf 50%,
+        #3a2c76 50%
+        );
+    }
+  ```
+  
+### 배경 패턴 
+  ```css
+    body{ 
+      background: url("//goo.gl/B6SfbX");
+      background-size: 90px; 
+     /* 사이즈를 설정해서 이미지의 크기를 조정하면 패턴 형태로 나타남 */
+  }  
+  ```
+  
+  * [오버레이 그레디언트]   
+    + 멀티 배경 테크닉 활용
+      - 마크업 순서에 따라 배경 위로 올라옴
+    
+      ```css
+        body{ 
+          background: 
+          /* linear-gradient(45deg, #45d5bf, #3a2c76) 투명도가 조정되지 않았기 때문에 아래의 이미지가 보이지 않음*/
+            linear-gradient(
+              45deg, 
+              hsla(12, 100%, 50%, 0.2), 
+              hsla(54, 90%, 68%, 0.2)),
+            url("//goo.gl/B6SfbX");
+          background-size: contain, 120px;
+        }  
+      ```
+  
+### 멀티 그레디언트 
+  ```css
+  body{ 
+   background: 
+    linear-gradient(217deg, rgba(255,0,0,0.45), rgba(255,0,0,0) 65.70%),
+    linear-gradient(127deg, rgba(0,255,0,0.45), rgba(0,255,0,0) 65.70%),
+    linear-gradient(336deg, rgba(0,0,255,0.45), rgba(0,0,255,0) 65.70%),
+    url("//goo.gl/B6SfbX");
+  background-size: 100%, 100%, 100%, 140px; 
+    
+  background: 
+    /* 'circle at 50% 0'(x, y) 원이 뿌려져 나가는 위치 설정 가능 */
+    radial-gradient(circle at 50% 0, rgba(255,0,0,0.45), rgba(255,0,0,0) 65.70%),
+    radial-gradient(circle at 6.7% 75%, rgba(0,255,0,0.45), rgba(0,255,0,0) 65.70%),
+    radial-gradient(circle at 93.3% 75%, rgba(0,0,255,0.45), rgba(0,0,255,0) 65.70%),
+    url("//goo.gl/B6SfbX");
+  background-size: 100%, 100%, 100%, 140px; 
+  }  
+  ```
+  
+### 반복 그레디언트 
+
+  ```css
+  body {
+    /* [선형 그레디언트] */
+    background: repeating-linear-gradient(
+      45deg,
+      #ff3400,
+      #ff3400 10px,
+      #45d5bf 10px,
+      #45d5bf 20px
+    );
+
+    /* [원형 그레디언트] */
+    background: repeating-radial-gradient(
+      circle at 50% 15%,
+      #ff3400,
+      #ff3400 10px,
+      #45d5bf 10px,
+      #45d5bf 20px
+    );
+  }
+  ```
+
+### 박스 그림자
+
+  * 기본 문법
+    ```css
+      header {
+        box-shadow: x y blur spread(사이즈) color; 
+        /* 또는 x y blur color */
+      }
+    ```
+
+  * 박스 그림자
+    + 박스 그림자의 x y를 0으로 설정하면 박스 사방으로 그림자가 나타나는 형태가 된다. 이를 이용해서 `<border>`와 같이 이미지의 테두리를 설정해 줄 수 있다. 
+    ```css
+    header {
+        /* 박스 그림자 ------ */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.35); 
+
+        /* 박스 안쪽 그림자 ------ */
+    box-shadow: inset 0 -5px 15px 4px rgba(0,0,0,0.35); 
+
+        /* 박스 그림자 설정 ------ */
+    box-shadow: 0 0 0 1px #3f3f3f; 
+
+        /* 둥근 테두리 설정 ------ */
+        /* 순서 : 왼쪽상단 오른쪽상단 오른쪽하단 왼쪽하단 */
+    border-radius: 170px 0 0 170px; 
+    }
+    ```
+
+### 멀티 박스 그림자 설정
+  ```css
+  .album-card:hover {
+    transform: scale(1.05); 
+  
+    box-shadow: 
+      0 25px 20px -20px rgba(0,0,0,0.25),
+      0 3px 15px rgba(0,0,0,0.5);
+  }
+  ```
+### 광택(glossy) 효과 설정
+  ```html
+  <ul class="album-list">
+    <li class="album-card has-gossy"></li>
+  </ul>
+  ```
+  ```css
+  .album-card.has-glossy::before {
+    background: 
+      linear-gradient(
+        148deg, 
+        rgba(255,255,255,0) 20%,
+        rgba(255,255,255,0.15) 47%, 
+        rgba(255,255,255,0.3) 47%, 
+        rgba(255,255,255,0.3) 47.1%, 
+        transparent 47.1%
+        );
+  }
+  ```
+
+
