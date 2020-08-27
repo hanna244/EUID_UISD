@@ -629,72 +629,87 @@
 ---
 # 4day
 
+## 질문 
+
+  * Q1) border-image-slice의 값을 퍼센트로 지정할 때, 퍼센트는 X, Y축 값을 사용하는 건가요? 
+
+  * Q2) '버튼 폼 컨트롤로 사용자의 인터랙션을 받아 액션을 트리깅(방아쇠) 처리함.'이라는 말은 '사용자가 버튼을 클릭 했을 때 브라우저가 실행된다'라는 말과 같나요?
+  '트리깅 처리'라는 것이 잘 이해가 안됩니다. '브라우저 실행'이 맞나요?
+
+  * Q3)
+      ```html
+      <fieldset name="user_account">
+        <legend>사용자 계정</legend>
+      </fieldset>
+      ```
+      `<fieldset>`요소의 이름의 값인 '사용자 계정'은 개발자가 구분을 편하게 하기 위해 입력한 이름이고,    
+      `<legend>`의 '사용자 계정'은 브라우저에서 사용자에게 보여주는 이름인가요?    
+      또한 `<fieldset>`의 이름은 꼭 설정하지 않아도 되는 건가요? 
+
 ## 보더 이미지 (Border Image)
 
-1. border-image-slice의 값을 퍼센트로 지정할 때, 퍼센트는 X, Y축 값을 사용하는 건가요? 
 
-fill 키워드를 지정한 경우 배경 이미지처럼 사용
 
-  [문법]
+  * [문법]
 
     **border-image: source [slice / width / outset repeat]** 속기형으로 자주 씀
 
-    border-image-source 필수로 입력
-    border-image-slice
-    border-image-width
-    border-image-outset
-    border-image-repeat
+    border-image-source 필수로 입력   
+    border-image-slice   
+    border-image-width   
+    border-image-outset   
+    border-image-repeat   
 
 
-  [source] : url() 함수를 사용하여 이미지 경로를 설정합니다.
+  * [source] : url() 함수를 사용하여 이미지 경로를 설정합니다.
 
 
-  [slice / width / outset]
+  * [slice / width / outset]
 
-  - slice
-    슬라이스는 이미지의 상(⬆︎), 우(➡︎), 하(⬇︎), 좌(⬅︎) 가장자리 오프셋을 설정합니다. (최대 4개)
-    보더 이미지를 9개 영역으로 나눌(slice) 수 있습니다. (px 단위 사용 X)
-    - Ex) 'border-image-slice: 10px;'
-      + 이미지를 9개의 영역으로 나누었을 때, 꼭지점 영역에 해당하는 부분의 이미지를 상하좌우 10px에 해당하는 부분만큼 잘라서 사용한다. 
-    
-    ```css
-        /* 위 아래 이미지의 길이가 안맞으면... 사다리꼴 모양이 되는 건가...? 
-        상하, 좌우 단위를 통일?*/
+    - slice
+      슬라이스는 이미지의 상(⬆︎), 우(➡︎), 하(⬇︎), 좌(⬅︎) 가장자리 오프셋을 설정합니다. (최대 4개)
+      보더 이미지를 9개 영역으로 나눌(slice) 수 있습니다. (px 단위 사용 X)
+      - Ex) 슬라이스를 10px로 설정한다. (border-image-slice: 10px;)
+        + 이미지를 9개의 영역으로 나누었을 때, 꼭지점 영역에 해당하는 부분의 이미지를 상하좌우 10px에 해당하는 부분만큼 잘라서 사용한다. 
+      
+      ```css
+          /* 위 아래 이미지의 길이가 안맞으면... 사다리꼴 모양이 되는 건가...? 
+          상하, 좌우 단위를 통일? 보더 다시 한 번 보기 */
 
-    div {
-      border: 10px solid #ddd;
-      border-image: url();
-      border-image-slice: 30;          /* 모든 방향 */
-      border-image-slice: 10% 30%;     /* 세로 가로 */
-      border-image-slice: 30 10% 45;   /* 위 가로 세로 */
-      border-image-slice: 10 15 10 20; /* 위 오른쪽 아래 왼쪽 (시계방향) */
-       
-       /* fill 키워드는 선택한 이미지를 박스 안의 배경이미지로 사용,
-       입력 순서 상관없이 아무데나 키워드 추가 가능*/
-      border-image-slice: 10% flii 30%;
-    }
+      div {
+        border: 10px solid #ddd;
+        border-image: url();
+        border-image-slice: 30;         /* 모든 방향 */
+        border-image-slice: 10% 30%;    /* 세로 가로 */
+        border-image-slice: 30 10% 45;  /* 위 가로 세로 */
+        border-image-slice: 10 15 10 20;/* 위 오른쪽 아래 왼쪽 (시계방향) */
+        
+        /* fill 키워드는 선택한 이미지를 박스 안의 배경이미지로 사용,
+        입력 순서 상관없이 아무데나 키워드 추가 가능*/
+        border-image-slice: 10% flii 30%;
+      }
 
-  - width
-    요소의 상/우/하/좌 테두리 이미지 너비(width)를 설정합니다. (최대 4개)
-    실제 테두리의 너비는 영향을 받지 않고 이미지는 맨 위에 배치됩니다. 
-    border-image 너비가 border-width 보다 클 경우 채우기 영역 또는 
-    내용 영역을 포함합니다. **단위 없는 값**은 요소의 테두리 너비의 배수로 해석됩니다. 
-    테두리 이미지 너비는 기본적으로 테두리 너비와 같습니다.
+    - width
+      - 요소의 상/우/하/좌 테두리 이미지 너비(width)를 설정합니다. (최대 4개)   
+      실제 테두리의 너비는 영향을 받지 않고 이미지는 맨 위에 배치됩니다.    
+      border-image 너비가 border-width 보다 클 경우 채우기 영역 또는 내용 영역을 포함합니다.    
+      **단위 없는 값**은 요소의 테두리 너비의 배수로 해석됩니다.    
+      테두리 이미지 너비는 기본적으로 테두리 너비와 같습니다.
 
-  - outset (테두리와 콘텐츠 사이 안쪽 여백 크기 조정)
-    테두리 이미지를 주어진 값만큼 패딩(안쪽) 영역을 설정합니다. (최대 4개)
-    단위 없는 값을 사용할 경우, 요소의 테두리 너비(width)에 곱하여 오프셋합니다.
-
-
-  [repeat 설정]
-  - stretch : 기본값, 이미지를 늘린다.
-  - repeat  : 이미지를 반복. 단, 반복되는 이미지의 사이즈가 가로, 세로 길이에 딱 맞지 않아 남거나 모자랄 경우 부자연스럽게 이미지가 잘린다.
-  - round   : 이미지를 반복. 크기가 안맞을 경우 이미지를 늘리거나 줄여서 자연스럽게 연결되게 함.
-  - space   : 이미지를 반복. 크기가 안맞을 경우 공백 처리.
+    - outset (테두리와 콘텐츠 사이 안쪽 여백 크기 조정)
+      - 테두리 이미지를 주어진 값만큼 패딩(안쪽) 영역을 설정합니다. (최대 4개)     
+      단위 없는 값을 사용할 경우, 요소의 테두리 너비(width)에 곱하여 오프셋합니다.
 
 
-  [예시]
+ * [repeat 설정]
+    - stretch : 기본값, 이미지를 늘린다.
+    - repeat  : 이미지를 반복. 단, 반복되는 이미지의 사이즈가 가로, 세로 길이에 딱 맞지 않아 남거나 모자랄 경우 부자연스럽게 이미지가 잘린다.
+    - round   : 이미지를 반복. 크기가 안맞을 경우 이미지를 늘리거나 줄여서 자연스럽게 연결되게 함.
+    - space   : 이미지를 반복. 크기가 안맞을 경우 공백 처리.
 
+
+  * [예시]
+```
   // 슬라이스 10px 설정, 나머지(width / outset)은 기본값 사용, 가장자리 섹션 stretch 사용
   border-image: url('imageUrl') 10;
 
@@ -706,7 +721,8 @@ fill 키워드를 지정한 경우 배경 이미지처럼 사용
 
   // 슬라이스 10px 설정, 테두리를 2배 큰 border-width 값으로 크기 조정, 가장자리 반복 설정
   border-image: url('imageUrl') 10 / 2 repeat;
-  /* border-image: url('imageUrl') 10 repeat;
+
+     /* border-image: url('imageUrl') 10 repeat;
      border-image-width: 2; */
 
   // 테두리를 2배 큰 border-width 값으로 크기 조정하고 
@@ -715,6 +731,7 @@ fill 키워드를 지정한 경우 배경 이미지처럼 사용
 
   // 4개의 가장자리마다 각기 다른 설정
   border-image: url('imageUrl') 5 8 6 10 / 1 2 1 3 / 0 1 .5 .5;
+```
 
 * [그레디언트 보더 이미지]
 
@@ -722,7 +739,7 @@ fill 키워드를 지정한 경우 배경 이미지처럼 사용
   <figure>
   <figcaption>CSS 그레디언트 보더 이미지</figcaption>
     <div class="is-gradient">
-      <img class="is-rwd" src="//images.unsplash.com/photo-1496179767723-3e2c77660f6b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3e42be8488ede010188bda48215d1995&auto=format&fit=crop&w=900&q=70" alt>
+      <img class="is-rwd" src="//images.unsplash.com/" alt>
     </div>
   </figure>
   ```
@@ -733,3 +750,326 @@ fill 키워드를 지정한 경우 배경 이미지처럼 사용
 	border-image: linear-gradient(-45deg, #00b9e9, #f98b14, #503370) 20;
   }
   ```
+
+## 폼 디자인
+
+  * `<form>`
+    - 폼은 텍스트필드, 버튼, 체크박스와 같은 폼 컨트롤을 포함하는 웹 페이지의 컴포넌트를 말함.
+      + 사용자와 인터랙션을 수행한 결과(예: 검색)를 서버로 보낼 수 있다.
+      - 즉, 사용자가 폼에 입력한 정보를 입력하고 폼 컨트롤을 클릭했을 때, 실행되는 브라우저에 입력한 정보를 전송하는 것이다.??
+
+      [사용 예시]
+    ```html
+      <body>
+        <form action="https://formspree.io/your@email.com" method="POST">
+          <input type="text">
+        </form>
+      </body>
+    ```
+
+  * `<method>`
+    - `<GET>` 
+      + 기본값, 폼에 입력한 사용자의 정보가 url에 그대로 나타남
+      + 일반적으로 많이 사용
+    - `<POST>`
+      + 폼에 입력한 사용자의 정보가 숨겨짐 
+      + 민감한 정보 데이터를 전송할 때 사용 (사용자의 로그인 정보 등)
+
+  * `<input>`
+    - 사용자의 데이터를 입력 받을 수 있는 폼 컨트롤을 말함.
+      다양한 유형(Type) 설정이 가능하며, 유형에 맞는 역할을 수행한다.
+    - 닫는 태그가 없음.
+
+      [속성]
+        - name : 서버의 이름
+        - placeholder : 사용자에게 무엇을 입력해야 할지 도움을 준다. 
+        - value
+        - readonly : 읽기만 가능 사용자가 입력할 수 없음(value 값 설정 가능)
+        - required : 필수 입력사항, 입력하지 않을 시에 전송 불가
+        - disabled : 비활성화
+        - minlength : 최소 입력 글자 수 설정
+        - maxlength : 최대 입력 글자 수 설정
+        - list
+
+      [유형]
+        - text : 텍스트를 입력할 수 있는 사각형 박스 생성
+        - password : 텍스트 입력 시에 ...과 같은 형태로 입력됨
+        - checkbox : 
+        - radio : 
+        - file : 파일을 전송할 때 사용 (form 요소에 'enctype="multipart-formdata"와 method 방식은 POST로 반드시 입력해야 함)
+        - submit 
+        - button 
+        - image
+        - reset 
+        - hidden : 사용자에게 보여지지 않으며 데이터를 전송할 때 사용 
+        - search
+        - url
+        - tel
+        - email
+        - date
+        - month
+        - week
+        - time
+        - datetime-local
+        - number
+        - range
+        - color
+
+
+      [사용 예시]
+      ```html
+        <body>
+          <input type="text">
+          <input type="submit" value="전송">
+          <input type="button" value="버튼">
+          <input type="image" src="https://goo.gl/Ng66oQ" alt="체크인" width="20" height="20">
+          <input type="reset" value="초기화">
+          <input type="hidden" name="using-ajax" value="true">
+          <input type="number" name="" id="" min="100" step="10" max="1000" value="150">
+          <input type="range" name="" id="" min="10" step="5" max="25" value="15">
+          <input type="color" name="" id="" value="#F7CC60">
+        </body>
+      ```
+
+  * `<checkbox>` 
+    - 여러 선택지 중에 **중복**해서 선택할 때 사용
+  * `<radio>` 
+    - 여러 선택지 중에 **한 개**를 선택할 때 사용
+    - 주의) `name`값이 반드시 **같아야** 한다.  
+    같지 않을 경우 값이 다른 것과 중복 선택이 가능해진다.
+
+    ```html
+      <body>
+        <!-- checkbox -->
+        <p>
+          <label><input type="checkbox" name="number" velue="one" checked>1</label>
+          <label><input type="checkbox" name="number" velue="two" checked>2</label>
+          <label><input type="checkbox" name="number" velue="three">3</label>
+        </p>
+
+        <!-- radio -->
+        <p>
+          <label><input type="radio" name="color" value="red">빨강</label>
+          <label><input type="radio" name="color" value="black" checked>검정</label>
+          <label><input type="radio" name="color" value="blue">파랑</label>
+        </p>
+        </body>
+    ```
+    - 'checked' 입력시 브라우저를 열었을 때 자동으로 해당 선택지가 선택되어 있음
+
+  * `<label>`
+    - 컨트롤에 레이블(이름)을 붙이고자 할 경우 사용.
+
+  [사용 예시]
+
+  ```html
+    <body>
+      <form action="https://formspree.io/your@email.com" method="POST">
+
+      <!-- 1 -->
+        <label>이름 
+        <input type="text" placeholder="이두연">
+        </label>
+
+      <!-- 2 -->
+      <!-- for 값을 사용하면 input 태그를 label 태그 밖으로 꺼낼 수 있다.  -->
+      <!-- 주의) for 속성의 이름과 id 속성의 이름이 반드시 동일해야 한다.  -->
+      <label for="u_pass">비밀번호</label>
+        <input id="u_pass" name="u_pass" type="password" maxlength="8" placeholder="비밀번호 8자리를 입력해주세요">
+      </form>
+    </body>
+  ```
+
+  * `<button>`
+    - 버튼 폼 컨트롤로 사용자의 인터랙션을 받아 액션을 트리깅(방아쇠) 처리함.
+
+    [type]
+      - submit (초기 값) : 클릭 시 실행되는 브라우저가 열리며 폼에 입력한 정보 전송
+      - button : submit과 다르게 클릭해도 아무런 변화가 없음
+      - reset : 초기화 버튼
+
+      [사용 예시]
+      ```html
+        <button type="submit">전송</button>
+        <button type="button">버튼</button>
+        <button type="reset">초기화</button>
+      ```
+
+ * `<select>`
+    - 드롭 다운 메뉴(옵션을 선택 할 수 있는) 컨트롤을 말함.
+      내부에 `<option>` 요소를 포함하여 사용자에게 선택할 수 있도록 한다.
+      `<option>`을 묶어 그룹으로 만들고자 한다면 `<optgroup>` 요소를 사용하고,
+      `label` 속성을 사용해 그룹 이름을 설정한다.
+
+      [속성]
+        - name
+        - multiple : 선택지를 여러개 선택할 수 있음(값이 없음)
+        - disabled
+        - required
+        - size
+
+      [사용 예시]
+      ```html
+        <label for="user_hobby">취미</label>
+        <select name="user_hobby" id="user_hobby">
+          ...
+        </select>
+      ```
+
+  * `<option>`
+    - `<select>`, `<datalist>`, `<optgroup>` 내부에 포함 가능한 컨트롤로 항목을 만드는데 사용됨.
+
+    [속성]
+      - value
+      - selected
+      - label
+      - disabled : 비활성화
+
+    [사용 예시]
+    ```html
+      <label for="user_hobby">취미</label>
+      <select name="user_hobby" id="user_hobby" required>
+        <option value="0">없음</option>
+        <option value="1" selected>축구</option>
+        <option value="2" label="basketball" disabled>농구</option>
+        <option value="3">독서</option>
+        <option value="3">영화관람</option>
+      </select>
+    ```
+
+  * `<optgroup>`
+    - `<option>` 컨트롤을 그룹지을 때 사용됨.
+    - 선택지 내에서 그룹 생성
+
+  * [속성]
+      - disabled : 해당 그룹을 비활성화
+      - label : 해당 옵션만 따로 이름을 설정할 수 있음
+
+  [사용 예시]
+  ```html
+    <p>
+      <label for="user_hobby">취미</label>
+      <select name="user_hobby" id="user_hobby" required>
+        <option value="0">없음</option>
+        <optgroup label="구기종목">
+          <option value="1" selected>축구</option>
+          <option value="2" label="basketball" disabled>농구</option>
+        </optgroup>
+        <optgroup label="문화생활" disabled>
+          <option value="3">독서</option>
+          <option value="3">영화관람</option>
+        </optgroup>
+      </select>
+    </p>
+  ```
+
+  * `<textarea>`
+    - 멀티라인 일반 텍스트 편집 컨트롤을 말한다.
+    - 텍스트 박스의 크기 설정 가능. 텍스트를 길게 입력할 때 사용 
+
+  * [속성]
+    - name
+    - placeholder
+    - rows
+    - cols
+    - readonly
+    - required
+    - disabled
+    - minlength
+    - maxlength
+
+  [사용 예시]
+  ```html
+    <div>
+      <label for="user_comments">코멘트</label>
+      <p>
+        <textarea name="user_comments" id="user_comments" cols="24" rows="5">남기고 싶은 말을 작성해주세요.</textarea>
+      </p>
+    </div>
+  ```
+
+  * `<fieldset>`
+    - 하나 이상의 폼 컨트롤을 그룹화 하는데 사용됨.
+
+    [속성]
+      - name
+      - disabled
+
+    [사용 예시]
+    ```html
+      <fieldset name="user_account">
+        ...
+      </fieldset>
+    ```
+
+  * `<legend>`
+    - `<fieldset>` 컨트롤의 레이블(이름)을 설정하는 컨트롤.
+
+    [사용 예시]
+    ```html
+      <fieldset name="user_account">
+        <legend>사용자 계정</legend>
+      </fieldset>
+    ```
+
+  * `<output>`
+    - 계산된 결과를 출력하는 컨트롤.
+
+    [속성]
+      - name
+      - for
+
+    [사용 예시]
+    ```html
+      <form oninput="result_sum.value = parseInt(n1.value + n2.value, 10)">
+        <p>
+          <input type="number" name="n1" value="4"> +
+          <input type="number" name="n2" value="10"> =
+          <output name="result_sum">14</output>
+        </p>
+      </form>
+    ```
+
+  * `<datalist>`
+    - 데이터 목록 요소 컨테이너 컨트롤.
+      내부에 `<option>` 요소를 사용해 항목을 만든다.
+
+      [사용 예시]
+      ```html
+        <label>이동할 웹주소 <input list="url_ex" type="url" name="user_url" id="user_url"></label>
+        <datalist id="url_ex">
+          <option value="http://naver.com">naver</option>
+          <option value="http://nate.com">nate</option>
+          <option value="http://google.com">google</option>
+          <option value="http://goo.gl">google short url</option>
+        </datalist>
+      ```
+
+  `<progress>`
+    - 작업의 완료 진행 상황을 표시하는데 사용되는 컨트롤.
+
+  * [속성]
+    - value
+    - max
+
+  [사용 예시]
+  ```html
+    <progress value="10" max="100">10%</progress>
+  ```
+
+  * `<meter>`
+    - 알려진 범위 내에서의 스칼라 측정 또는 분포 비율을 나타내는 컨트롤. (게이지(gauge)라고도 불림)
+      디스크 사용 현황, 쿼리 결과의 관련성, 특정 후보에 대한 투표율 등이 해당됨.
+
+    [속성]
+      - value
+      - min
+      - max
+      - low
+      - high
+      - optimum
+
+    [사용 예시]
+    ```html
+      <meter value="20" min="5" max="40">20</meter>
+    ```
