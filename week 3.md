@@ -626,4 +626,110 @@
   }
   ```
 
+---
+# 4day
 
+## 보더 이미지 (Border Image)
+
+1. border-image-slice의 값을 퍼센트로 지정할 때, 퍼센트는 X, Y축 값을 사용하는 건가요? 
+
+fill 키워드를 지정한 경우 배경 이미지처럼 사용
+
+  [문법]
+
+    **border-image: source [slice / width / outset repeat]** 속기형으로 자주 씀
+
+    border-image-source 필수로 입력
+    border-image-slice
+    border-image-width
+    border-image-outset
+    border-image-repeat
+
+
+  [source] : url() 함수를 사용하여 이미지 경로를 설정합니다.
+
+
+  [slice / width / outset]
+
+  - slice
+    슬라이스는 이미지의 상(⬆︎), 우(➡︎), 하(⬇︎), 좌(⬅︎) 가장자리 오프셋을 설정합니다. (최대 4개)
+    보더 이미지를 9개 영역으로 나눌(slice) 수 있습니다. (px 단위 사용 X)
+    - Ex) 'border-image-slice: 10px;'
+      + 이미지를 9개의 영역으로 나누었을 때, 꼭지점 영역에 해당하는 부분의 이미지를 상하좌우 10px에 해당하는 부분만큼 잘라서 사용한다. 
+    
+    ```css
+        /* 위 아래 이미지의 길이가 안맞으면... 사다리꼴 모양이 되는 건가...? 
+        상하, 좌우 단위를 통일?*/
+
+    div {
+      border: 10px solid #ddd;
+      border-image: url();
+      border-image-slice: 30;          /* 모든 방향 */
+      border-image-slice: 10% 30%;     /* 세로 가로 */
+      border-image-slice: 30 10% 45;   /* 위 가로 세로 */
+      border-image-slice: 10 15 10 20; /* 위 오른쪽 아래 왼쪽 (시계방향) */
+       
+       /* fill 키워드는 선택한 이미지를 박스 안의 배경이미지로 사용,
+       입력 순서 상관없이 아무데나 키워드 추가 가능*/
+      border-image-slice: 10% flii 30%;
+    }
+
+  - width
+    요소의 상/우/하/좌 테두리 이미지 너비(width)를 설정합니다. (최대 4개)
+    실제 테두리의 너비는 영향을 받지 않고 이미지는 맨 위에 배치됩니다. 
+    border-image 너비가 border-width 보다 클 경우 채우기 영역 또는 
+    내용 영역을 포함합니다. **단위 없는 값**은 요소의 테두리 너비의 배수로 해석됩니다. 
+    테두리 이미지 너비는 기본적으로 테두리 너비와 같습니다.
+
+  - outset (테두리와 콘텐츠 사이 안쪽 여백 크기 조정)
+    테두리 이미지를 주어진 값만큼 패딩(안쪽) 영역을 설정합니다. (최대 4개)
+    단위 없는 값을 사용할 경우, 요소의 테두리 너비(width)에 곱하여 오프셋합니다.
+
+
+  [repeat 설정]
+  - stretch : 기본값, 이미지를 늘린다.
+  - repeat  : 이미지를 반복. 단, 반복되는 이미지의 사이즈가 가로, 세로 길이에 딱 맞지 않아 남거나 모자랄 경우 부자연스럽게 이미지가 잘린다.
+  - round   : 이미지를 반복. 크기가 안맞을 경우 이미지를 늘리거나 줄여서 자연스럽게 연결되게 함.
+  - space   : 이미지를 반복. 크기가 안맞을 경우 공백 처리.
+
+
+  [예시]
+
+  // 슬라이스 10px 설정, 나머지(width / outset)은 기본값 사용, 가장자리 섹션 stretch 사용
+  border-image: url('imageUrl') 10;
+
+  // 각 테두리 방향에서 5% 조각 이미지 사용, 가장자리 반복 설정
+  border-image: url('imageUrl') 5% round;
+
+  // 슬라이스 오프셋 ⇒ 순서: 위 오른쪽 아래 왼쪽
+  border-image: url('imageUrl') 10 20 30 40;
+
+  // 슬라이스 10px 설정, 테두리를 2배 큰 border-width 값으로 크기 조정, 가장자리 반복 설정
+  border-image: url('imageUrl') 10 / 2 repeat;
+  /* border-image: url('imageUrl') 10 repeat;
+     border-image-width: 2; */
+
+  // 테두리를 2배 큰 border-width 값으로 크기 조정하고 
+  // 여백 테두리는 1배 border-width 값으로 설정
+  border-image: url('imageUrl') 5 / 2 / 1;
+
+  // 4개의 가장자리마다 각기 다른 설정
+  border-image: url('imageUrl') 5 8 6 10 / 1 2 1 3 / 0 1 .5 .5;
+
+* [그레디언트 보더 이미지]
+
+  ```html
+  <figure>
+  <figcaption>CSS 그레디언트 보더 이미지</figcaption>
+    <div class="is-gradient">
+      <img class="is-rwd" src="//images.unsplash.com/photo-1496179767723-3e2c77660f6b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3e42be8488ede010188bda48215d1995&auto=format&fit=crop&w=900&q=70" alt>
+    </div>
+  </figure>
+  ```
+  ```css
+  .is-gradient {
+  width: 50vw;
+  border: 20px solid #f98b14;
+	border-image: linear-gradient(-45deg, #00b9e9, #f98b14, #503370) 20;
+  }
+  ```
