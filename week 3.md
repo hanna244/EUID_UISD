@@ -633,8 +633,24 @@
 
   * Q1) border-image-slice의 값을 퍼센트로 지정할 때, 퍼센트는 X, Y축 값을 사용하는 건가요? 
 
+    + A1) 값의 개수에 따라 방향이 설정되는 것이 다릅니다. (margin, padding과 유사)
+
+예시)
+border-image-slice: 모든방향;
+border-image-slice: 세로방향 가로방향;
+border-image-slice: 위 가로방향 아래;
+border-image-slice: 위 오른쪽 아래 왼쪽;
+
+참고 URL: https://mzl.la/31BoTJo
+
   * Q2) '버튼 폼 컨트롤로 사용자의 인터랙션을 받아 액션을 트리깅(방아쇠) 처리함.'이라는 말은 '사용자가 버튼을 클릭 했을 때 브라우저가 실행된다'라는 말과 같나요?
   '트리깅 처리'라는 것이 잘 이해가 안됩니다. '브라우저 실행'이 맞나요?
+
+    + A2) 버튼을 클릭하면 "폼에 입력된 내용을 서버로 전송한다." 라던가, "폼에 입력된 내용을 모두 초기화 한다." 또는 "우편번호 찾는 새 창을 띄운다." 등 
+    개발자가 버튼에 연결한 일련의 동작(action)을 실행(trigger)하는 것을 말합니다.
+
+  - 추가) 인터랙션이란 
+  
 
   * Q3)
       ```html
@@ -645,6 +661,17 @@
       `<fieldset>`요소의 이름의 값인 '사용자 계정'은 개발자가 구분을 편하게 하기 위해 입력한 이름이고,    
       `<legend>`의 '사용자 계정'은 브라우저에서 사용자에게 보여주는 이름인가요?    
       또한 `<fieldset>`의 이름은 꼭 설정하지 않아도 되는 건가요? 
+
+    + A3) `<fieldset>` 요소는 폼 컨트롤을 묶는데 사용하고, 묶여진 그룹의 이름(또는 레이블)을 표시해야 사용자는 해당 그룹을 구분할 수 있습니다.
+    묶여진 폼 컨트롤 그룹만 있고 이름이 표시 되지 않을 경우 사용자는 해당 그룹이 의미하는 바를 명확히 이해할 수 없습니다. 
+    그러므로 `<fieldset>`을 사용해 폼 컨트롤을 묶을 경우 `<legend>` 요소를 사용해 영역의 이름(레이블)을 표시하는 것이 권장됩니다.
+
+  - 추가) 그러면 `<fieldset>`요소에 `<legend>`요소를 사용해 이름을 표시한다면 fieldset name="user_account"은 입력하지 않아도 괜찮나요?  
+
+    그리고 `<fieldset>` 요소의 name 값은 개발 상에서 사용되기 때문에 필요한 것이고 단순히 구분을 편하게 하기 위한 목적으로 사용되지 않습니다.
+    다만, 실무에서의 `<fieldset>` 요소는 CSS 스타일링이 쉽지 않고, 브라우저 마다 다르게 그리는 문제가 있어 자주 사용되지는 않습니다.
+    하지만 폼 컨트롤을 묶어야 할 때 의미적인 구조화(Semantic Markup)를 위한 네이티브(Native) 방법은 `<fieldset>`, `<legend>` 요소를
+    사용하는 것입니다. 그러므로 각 요소의 사용 목적과 사용법을 잘 기억해두시길 바랍니다.
 
 ## 보더 이미지 (Border Image)
 
@@ -1073,3 +1100,82 @@
     ```html
       <meter value="20" min="5" max="40">20</meter>
     ```
+---
+# 5day
+
+## CSS - 멀티 컬럼 레이아웃 (Multi column layout)
+  - 다단 레이아웃
+
+  * 컬럼 개수 또는 폭 설정 (기본값 auto)   
+    + `<column-count>` 컬럼 개수 (단위X)  : 화면의 폭을 줄였을 때 지정된 개수를 유지하려고 하기 때문에 읽기가 불편해짐 
+    + `<column-width>` 컬럼 폭   (em, px) : 화면의 폭을 줄였을 때 컬럼의 개수가 폭에 맞춰서 유동적으로 변함.  
+    + `<columns>` (속기형 작성법)  
+      - `count` 또는 `width`의 값중 하나만 입력.(반드시 그래야 하는 것은 아니고 속성에 대한 값이 겹치지 않게 하기위해 둘 중 하나만 입력한다.)
+      - 작성 순서는 상관없다. 
+
+
+     [예시]
+     ```css
+     columns: 12em;       // column-width: 12em; column-count: auto
+     columns: auto 12em;  // column-width: 12em; column-count: auto
+     columns: 2;          // column-width: auto; column-count: 2
+     columns: 2 auto;     // column-width: auto; column-count: 2
+     columns: auto;       // column-width: auto; column-count: auto
+     columns: auto auto;  // column-width: auto; column-count: auto
+     columns: 12 320px;   // column-width: 320px; column-count: 12
+    /* ------------------ */
+    /* 섹션 */
+     .magazine-section {
+       margin: 6rem 0;
+       columns: 12em;
+       column-gap: 1em;
+       column-rule: 1px soild #fff;
+     }
+     ```
+     
+  * 컬럼 간격 또는 구분 선 설정
+    + column-gap
+    + column-rule (속기형)   
+      - column-rule-color   
+      - column-rule-style   
+      - column-rule-width   
+
+  * 컬럼 병합
+    + column-span : 예를 들어 글의 제목에 해당하는 행에 제목만 남기고 싶다면 행을 병합해서 사용한다. 
+    ```css
+    /* 제목 */
+    .magazine-headline {
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      column-span: all;
+    }
+    ```
+
+  * 컬럼 채우기
+    + column-fill
+
+
+### Figma - 레이어 관리
+  * 단축키는 Windows 기준
+  * 설정/ 해지
+  * groups : Ctrl + G/ Shift + Ctrl + G
+  * Frames : Ctrl + Art + G / Shift + Ctrl + G 
+
+  * 레이어 순서 조정
+    + 위 : Ctrl + ]
+    + 맨 위 : Ctrl + Shift + ]
+    + 아래 : Ctrl + [
+    + 맨 아래 : Ctrl + Shift + [
+  
+  * 레이어 이름 변경 : Ctrl + R
+    + 전체 숫자 선택 : /d+
+    + Find and place : 레이어 안의 요소의 이름 변경 가능
+
+  * Toggle(레이어 숨김 기능) : Ctrl + Shift + H
+  * 레이어 패널 잠금 :  Ctrl + Shift + L
+
+
+
+
+
