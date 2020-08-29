@@ -2,7 +2,7 @@
 
 # 1day
 
-## HTML 이란?
+## HTML - [HTML 이란?]
   * 확장자 : `<.html>`
   * HTML(HyperText Markup Language)
   * **구조를 설계할 때 사용되는 언어**이며 하이퍼링크 시스템을 가지고 있다.   
@@ -15,7 +15,7 @@
  L : 랭귀지 - 언어
 
 ---
-## 시멘틱 마크업 (Semantic Markup)
+## HTML - [시멘틱 마크업] (Semantic Markup)
   * 컨텐츠를 브라우저가 해석을 하면서 자동으로 여러가지의 **HTML 요소를 구성 하는 일**을 마크업이라고 한다.
   * 넌시멘틱 마크업(Non-Sementic Markup) : 의미가 없는 구조
     + Ex) `<div>`
@@ -438,13 +438,13 @@ Window와 Mac 상관없이 UI 편집이 가능하다
 ---
 # 3day
 
-## CSS란? (Cascading Style Sheets)
+## CSS - [CSS란?] (Cascading Style Sheets)
   - CSS 언어는 HTML 문서인 Sheets를 스타일링 하는 역할을 하는데 일종의 규칙을 가지고 있는 스타일 언어이다.  
 
   * [참고]
     + CSS Current Work(CSS 스펙 등 CSS의 최신 기술등 ) : https://www.w3.org/Style/CSS/current-work  
  
-## css 기본 문법
+## CSS - [CSS 기본 문법] 
 
   ```css
     선택자(대상) {        /* 대상 선택자, { 선언구간 시작 */
@@ -471,15 +471,10 @@ Window와 Mac 상관없이 UI 편집이 가능하다
   + **`<head>` 내부에서만 사용 가능**하고 `<style>` 태그를 사용해서 css코드 넣기
   + `<text/css>` MIME type 지정, 하지만 html 5 에서는 **생략 가능**
 
-  * [참고]
-    + MIME type이란?
-      - MIME 타입이란 클라이언트에게 전송된 문서의 다양성을 알려주기 위한 메커니즘입니다
-      - 웹에서 파일의 확장자는 별  의미가 없습니다. 그러므로, 각 문서와 함께 올바른 MIME 타입을 전송하도록, 서버가 정확히 설정하는 것이 중요합니다. 브라우저들은 리소스를 내려받았을 때 해야 할 기본 동작이 무엇인지를 결정하기 위해 대게 MIME 타입을 사용합니다.
-      - MIME 타입은 대소문자를 구분하지는 않지만 전통적으로 소문자로 쓰여집니다.
-      - MIME 타입 : <https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types>
 
 
-## 스타일 방법
+
+## CSS - [CSS 스타일 방법]
   + CSS 코드를 HTML 문서에 적용하여 스타일링하는 3가지 방법
     - 인라인 스타일 (inline style)
     - 인터널 스타일 (iternal style)
@@ -504,20 +499,15 @@ Window와 Mac 상관없이 UI 편집이 가능하다
       </body>
     </html>
     ```
-    * **`<href>` 특성에 스타일 시트의 경로**를, `<rel>` 특성에 stylesheet을 사용합니다. `<rel>`은 관계(relationship)를 뜻하며, ;**현재 문서와 연결한 아이템의 관계**가 어떻게 되는지 설명하므로 `<link>` 요소의 제일 중요한 기능 중 하나
-    * [참고]
-      + `<link>`: 외부 리소스 연결 요소 : <https://developer.mozilla.org/ko/docs/Web/HTML/Element/link> 
     
     ```html
     <body>
-    <section style="color: #903000" id="about-css">
+    <section style="color: #903000">
     <h1 style="color: tan">
-      <dfn id="dfn-css">
         <abbr 
         style="cursor: help; text-decoration: none" 
-        title="Cascading Style Sheets">CSS
-      </abbr>
-    </dfn> 언어란?
+        </abbr>
+     언어란?
     </h1>
     </body>
     ```
@@ -538,7 +528,7 @@ Window와 Mac 상관없이 UI 편집이 가능하다
         cursor: help; 
         text-decoration: none;
       }
-  </style>
+    </style>
   </head>
   ```
 
@@ -564,6 +554,37 @@ Window와 Mac 상관없이 UI 편집이 가능하다
    }
    ```
 
+## `<link>` 요소
+  * 외부의 있는 문서를 연결할 때 사용
+  * `<head>` 태그 안에 사용해야 한다. (중복된 `<link>`사용 가능)
+  * `<link>``</link>` 형식이 아닌 `<link />` 형식으로 태그를 닫는다. 
+  
+    * `<rel>`속성 
+      + 외부에서 불러오는 문서와의 관계를 설명하는 속성이다.
+      `<link rel="stylesheet">` : 스타일 시트로써 문서를 불러오겠다는 의미다.
+
+    * `<type>` 속성
+      + link를 통해 연결된 문서의 MIME 유형을 나타낸다. 
+        - css 파일일 경우 type="text/css"
+        - js 파일일 경우 type="text/javascript"
+        - xml 파일일 경우 type="application/txml"
+      
+      + MIME type이란?
+        - 클라이언트에게 전송된 문서의 올바른 MIME 타입을 전송하도록 설정하는 것. 브라우저들은 리소스를 내려받았을 때 해야 할 기본 동작이 무엇인지를 결정하기 위해 대게 MIME 타입을 사용한다. 
+        - MIME 타입은 대소문자를 구분하지는 않지만 대부분 소문자로 쓴다.
+        - MIME 유형 : <https://www.sitepoint.com/mime-types-complete-list/>
+
+    * `<href>` 속성
+      + 연결될 문서를 불러오는 속성 
+      + 상대경로와 절대경로
+        - 상대경로 : 현재 머물고 있는 페이지에서 부터 시작해 경로를 설정하는 것
+        - 절대경로 : 불러오려는 페이지를 가지고 있는 최상위 경로부터 시작해 설정하는 것
+        - 예) 아래의 위치에 css와 html이 저장되어 있다고 가정한다면
+          - /home/nana/one/style.css
+            /home/nana/three/index.html
+          - index.html의 위치에서 **상대** 경로로 css 파일을 불러올 때 : href="./one/style.css"
+          - index.html의 위치에서 **절대** 경로로 css 파일을 불러올 때 : href="/home/nana/one/style.css"
+            
 
 
 ## css 선택자
@@ -575,6 +596,7 @@ Window와 Mac 상관없이 UI 편집이 가능하다
   * 요소(타입, 태그) 선택자
   * HTML의 특정 요소를 선택해서 꾸며주는 것 
   * 우선권을 갖고 있음 
+  * 항상 네트워크를 통해서 올바르게 CSS 파일을 불러왔는지 확인 
 
 #### 그룹핑(Grouping) `a, abbr { ... }`
   * 그룹 선택자
@@ -838,9 +860,9 @@ Window와 Mac 상관없이 UI 편집이 가능하다
      * RED, GREEN, BLUE, ALPHA(투명도)    
        - 예)rgb(127,255,0), rgba(127,255,0,0.3)
        - 색상은 256가지색이 있다 (0 ~ 255)
-  +  hsl, hsla 
-     * HUE(색상), SATURATION(채도), LIGHTNESS(명도), ALPHA 
-       - 예)hsla(360,60%,70%+ )
+  +  hsl, hsla(hsl에 투명도 추가) 
+     * HUE(색상), SATURATION(채도), LIGHTNESS(명도), ALPHA(투명도)
+       - 예)hsl(360,60%,70%); , hsla(360,60%,70%,0.3);
        - HUE는 각도(deg)는 사용, 채도 및 명도는 퍼센트(%) 사용
  *  웹브라우저는 운영체제가 지원하는 기본 폰트(웹 안전 폰트)만 화면에 렌더링 한다. (참고: https://cssfontstack.com) 즉, 사용된 폰트가 사용자 컴퓨터에 없으면 렌더링 X.   
  사용하기 전 안전한 폰트인지 확인!
