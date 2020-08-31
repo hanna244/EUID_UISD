@@ -24,6 +24,8 @@
         </html>
     ```
 
+### 참고
+  * CSS 모던 레이아웃 - Flexbox 인터랙티브 플레이그라운드 : <https://codepen.io/yamoo9/full/qoGqaE>
 
 
 ### [Flex 컨테이너(부모) 요소 속성]
@@ -36,6 +38,8 @@
 ### `display`
   * flex요소를 사용하는 첫 시작은 부모요소에 `display:flex`을 적용하는 것이다.  
   자동으로 자식요소들은 모두 flex-item이 된다. (단, 자식만 item이 되는 것이다.)
+  * flex   
+    inline-flex
 
 
 ### `flex-direction`
@@ -56,8 +60,12 @@
     <head>
         <style>
             .flex-container {
-            flex-wrap: wrap;
-            height: 200px; /* 컨테이너 박스의 높이가 높아지면 아이템 박스 사이의 공간도 많아진다. */
+                flex-wrap: wrap;
+                width: 200px; /* 컨테이너 박스의 높이가 높아지면 아이템 박스 사이의 공간도 많아진다. */
+            }
+            .flex-item {
+                flex-shrink: 0; /* ㄴshrink의 기본값 1은 아이템 박스가 부모 컨테이너의 크기에 맞추기 때문에 0으로 설정해 주어야 한다.*/
+                width: 120px; /* 아이템들의 크기를 합한 값이 컨테이너 박스보다 크도록 */
             }
         </style>
     </head>
@@ -140,7 +148,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
     ```
 
 ### `flex-shrink`
-  - 기본값 : 1
+  - 기본값 : 1 (부모 컨테이너의 크기에 맞추게됨)
   - 아이템 박스의 크기를 줄인다.
   - 특정한 item의 크기를 설정한 basis값 만큼 고정한다. (반드시 basis의 값이 있어야 적용가능)
 
@@ -149,7 +157,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
         <!-- 1 -->
         .flex-item:nth-child(1) {
         flex-basis: 150px;
-        flex-shrink: 0;  <!-- 값이 0일 때, 크기 고정. -->
+        flex-shrink: 0;  <!-- 값이 0일 때, 설정한 크기 고정. -->
         }
 
         <!-- 2 -->
