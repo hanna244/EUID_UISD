@@ -234,10 +234,6 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
 
 ## 질문
 
-  * Q) repeat함수를 알아보다 `repeat(2, 2fr 3fr 1fr);`를 보았습니다.    
-       grid-template-columns:  2fr 3fr 1fr  2fr 3fr 1fr
-       grid-template-columns:  2fr 2fr 3fr 1fr
-
 
 ## 그리드 레이아웃
   * Flex와 비슷하지만 차이점이 있다. 
@@ -270,6 +266,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
     + 그리드 컨테이너의 자식 요소들이다. (직계 자식만)
 
   * 그리드 용어 정리 : <https://codepen.io/yamoo9/pen/odgNQj>
+
 
 ### 그리드 설정 - Grid 컨테이너
 
@@ -373,6 +370,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
     + 사용자가 설정하지 않은 임의의 트랙으로, 사용자가 명시적으로 `grid-template-rows` /  `grid-template-columns` 속성을 설정하지 않은 나머지 그리드 트랙을 가리킨다. 
     + 즉, 아이템 박스는 생성되어 있으나 `grid-template-rows` /  `grid-template-columns` 속성이 설정되어 있지 않은 트랙을 말한다. 
   * 단위 : px, rem, em, %, fr 등
+  * **속기형 없음**
   * grid-auto-columns : <https://developer.mozilla.org/ko/docs/Web/CSS/grid-auto-columns>    
     grid-auto-rows    : <https://developer.mozilla.org/ko/docs/Web/CSS/grid-auto-rows>    
 
@@ -389,17 +387,85 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
 
 #### `grid-auto-flow`
   * 아이템이 자동 배치되는 흐름을 결정하는 속성입니다.
-  * row (기본값) : 각 행을 차례로 채우고 필요에 따라 새 행을 추가하는 자동 배치 알고리즘    
-    column : 각 열을 차례로 채우고 필요에 따라 새 열을 추가하는 자동 배치 알고리즘     
-    dense : 배치 중 나중에 크기가 작은 아이템이 존재할 경우, 그리드 영역 앞부분의 남은 공간에 자동 배치하는 알고리즘     
-    row dense     
-    column dense    
+    + row (기본값) : 각 행을 차례로 채우고 필요에 따라 새 행을 추가하는 자동 배치 알고리즘    
+    + column : 각 열을 차례로 채우고 필요에 따라 새 열을 추가하는 자동 배치 알고리즘     
+    + dense 
+      - 배치 중 나중에 크기가 작은 아이템이 존재할 경우, 그리드 영역 앞부분의 남은 공간에 자동 배치하는 알고리즘 
+      - row와 column에 따라 기준이 달라진다. 
+    + row dense     
+    + column dense 
 
+```html
+  <section class="grid-contianer">
+    <div class="item-a">item-a</div>
+    <div class="item-b">item-a</div>
+    <div class="item-c">item-a</div>
+    <div class="item-d">item-a</div>
+    <div class="item-e">item-a</div>
+  </section> 
+```
+```css
+  .grid-contianer {
+    display: grid;
+    grid-template: repeat(5, 60px) / repeat(2, 30px);
+    grid-auto-flow: row;
+  }
+  
+  .item-a {
+    grid-row: 1 / 3;
+    grid-column: 1;
+  }
+
+  .item-e {
+    grid-row: 1 / 3;
+    grid-column: 5;
+  }
+```
+
+#### `justify-items` `align-items` 아이템 내부 콘텐츠 가로/세로 정렬
+  * `justify-items` : 행(row) 축을 따라 그리드 아이템 내부 콘텐츠를 정열한다. 
+  * `align-items` : 열(column) 축을 따라 그리드 아이템 내부 콘텐츠를 정렬한다. 
+  * 이 설정은 그리드 컨테이너 내부 모든 그리드 아이템에 적용된다. 
+  
+  * 값
+    + stretch(기본값) : 그리드 영역 전체 너비를 채움 
+    + start : 그리드 영역의 시작점에 콘텐츠 정렬
+    + center : 그리드 영역의 끝점에 콘텐츠 정렬
+    + end : 그리드 영역 중앙에 콘텐츠 정렬
+
+ 
+#### `justify-content` `align-content` : 아이템 트랙 가로/세로 정렬
+  * `justify-content` : 행(row) 축을 따라 아이템 트랙을 정렬한다. 
+  * `align-content` : 열(column) 축을 따라 아이템 트랙을 정렬한다. 
+  * 그리드 아이템들의 너비의 총 합이 그리드 컨테이너의 크기보다 작아야 한다.
+  * 그리드 아이템들에 설정되어 있는 너비값의 단위가 같아야 한다. (px 등)
+
+  * 값
+   + stretch : 그리드 컨테이너 영역을 아이템 트랙 크기를 조정하여 채움
+   + start : 그리드 컨테이너 영역의 시작점에 아이템 트랙을 정렬
+   + center : 중앙에 아이템 트랙을 정렬
+   + end : 끝점에 아이템 트랙을 정렬
+   + space-around : 그리드 컨테이너의 남은 영역을 아이템 트랙(행)이 좌/우 공간으로 나눔 (양 가장자리 공간은 아이템 그룹 사이 간격의 1/2)
+   + space-between : 그리드 컨테이너 영역의 양 가장자리 공백 없이, 아이템 트랙(행) 사이 공간을 나눔
+   + space-evenly : `space-around`와 비슷해보이지만, 공간을 모두 동일하게 나누는 점이 다름
+
+```css
+  .grid {
+    display: grid;
+
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+```
+   
 
 ### 그리드 설정 - Grid 아이템
 
 #### `grid-column-start` `grid-column-end` `grid-column` `grid-row-start` `grid-row-end` `grid-row`
   * 각 셀의 영역을 지정한다. 
+  * 음수값을 사용해서 끝 점에서의 상대적 위치 이동도 가능하다. 
 
 ```css
   .grid { 
@@ -413,7 +479,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-end: 3; /* 그리드 라인이 1-3번까지만 있기 때문에  grid-row-end: 3;을 입력하지 않아도 정상작동 */
   }
 
   /* 속기형  */
@@ -422,12 +488,16 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
   .item:nth-child(1) {
     grid-column: 3/4;
     grid-row: 2/3;
+ 
+    /* start와 end값이 같을 때 기본값: span1 */
+    grid-row: 2;
   }
 ```
 
 
 #### Grid Area의 속기형
-  * grid-area : grid-row-start / grid-column-start / grid-row-end / grid-column-end
+  * grid-area : **grid-row-start / grid-column-start / grid-row-end / grid-column-end**
+  * 그리드의 라인의 갯수가 많아지면 마지막 라인의 넘버를 기억하기 쉽지 않다. 그래서 마지막 라인 `-1` 을 입력해 주는 것이 편리하다. 
 
 ```css
   .item:nth-child(1) {
@@ -441,7 +511,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
 
 
 #### Grid Span
-  * 기본값 : 1 
+  * 기본값 : 1  
   * 기준 라인이 중요하다.
   * 그리드 영역 선택 가능
   * span값이 start자리에 있다면 start쪽 방향으로, end자리에 있다면 end쪽 방향으로
@@ -449,17 +519,17 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
   .item:nth-child(1) {
 
     /* column라인 3번에서  오른쪽(end)방향으로 2칸 : grid-column: 3/5 */ 
-    grid-column: 3/span2;
+    grid-column: 3/span 2;
 
     /* row라인 4번에서 위쪽(start)방향으로 3칸 : grid-row: 1/4 */
-    grid-row: span3/4;
+    grid-row: span 3/4;
   }
 ```
 
 #### `order`
   * 그리드 아이템을 재 정렬한다. 
   * 단, 순서를 변경해도 접근성에 문제가 발생하지 않는 경우에만 사용해야 한다. 
-  * 기본갑 : 0
+  * 기본값 : 0
 
 ```css
   .grid { 
@@ -493,6 +563,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
 
 
   ```css
+  /* 각 열과 행을 식별자 이름으로 구분시켜준다. */
   .grid {
     grid-template-areas:
       "header header header"      /* 1행: 3열 모두 header */
@@ -504,7 +575,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
       /* "   main  .   sidebar  " */
   }
   
-  /* 해당 아이템 요소에 grid-area요소를 사용하여 이름을 지정 */
+  /* 그리드 영역에 식별자 이름을 입력 */
   /* 요소의 이름과 grid-area의 이름이 꼭 같은 필요는 없다. .header { grid-area: top; }  */
   .header    { grid-area: header;   }
   .sidebar   { grid-area: sidebar;  }
@@ -514,13 +585,182 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
   .footer    { grid-area: footer;   }
   ```
 
-
+#### `justify-self` `align-self` : 개별 아이템 가로/세로 정렬
+  * `justify-self` : 행(row) 축을 따라 특정한 아이템을 정렬한다. 
+  * `align-self` : 열(column) 축을 따라 특정한 아이템을 정렬한다.
+  
+  * 값
+   + stretch 
+   + start 
+   + center 
+   + end 
 
     
+```css
+  .item.item-1 {
+    justify-self: center;
+    align-self: center;
+  }
+```
 
+---
 
+# 3day
+
+  * 반응형 디자인이란?
+    + 화면의 크기에 따라서 웹페이지의 각 요소들이 반응해서 동작하게 되는 것
+
+### 유연한 그리드 레이아웃
+  * 반응형 웹(RWD)에서는 픽셀이 아닌, 상대 단위(em,rem,%)를 사용해야 하기에 픽셀을 상대 단위로 바꾸는 계산식을 사용해야 한다. 
+  * 사용하려는 콘텐츠뿐만 아니라 해당 브라우저의 단위도 바꿔줘야 한다. 
   
 
+#### 반응형 엘리먼트 계산식
+  * Target : context = results  (context = 부모컨테이너 폭 값)
+  * Target ÷ context × 100 = (%)
+
+```css
+    /* 24px / 16px = 1.5em */
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 1.5em;
+  }
+
+    /* 700px ÷ 988px × 100 = 70.80202429% */
+  h1 {
+    width: 70.85%
+  }
+```
+             
+
+#### 테크니컬 이슈 
+  * 유연한 레이아웃을 float로 구현할 경우 발생하는 테크니컬 이슈는 웹 브라우저가 퍼센트값을 픽셀값으로 변경하는 과정에서 발생한다. 
+  하지만 플렉스 박스를 사용할 경우 해당 이슈는 발생하지 않는다. 
+
+예시
+```css
+ /* 브라우저 디자인 */
+.browser {
+  display: flex;
+  flex-flow: column;
+  /* contenxt = 960px + padding: 1.4rem (패딩값도 잊지말기) */ 
+  /* flex: 0 0 calc(960px + (1.4rem * 2)); */
+  flex: 0 0 90vw;
+  max-width: calc(960px + (1.4rem * 2));
+  height: 640px;
+  border-radius: 0.6rem;
+}
+
+/* 콘텐츠 */
+.layout__fluid-grids .content-alpha {
+  flex: 0 0 38.020833333%;
+  /* width: 365px */
+  /* 365px ÷ 960px × 100 = 38.020833333% */
+}
+
+.layout__fluid-grids .content-beta {
+  flex: 0 0 61.979166667%;
+  /* width: 595px */
+  /* 595 ÷ 960 × 100 = 61.979166667% */
+}
+```
+
+### 유연한 이미지
+  * 컨테이너 요소의 폭에 맞춰 크기가 변경되는 이미지를 말함
+  즉, 뷰포트 사이즈에 맞춰 크기 변경
+  * 
+
+#### 콘텐츠 이미지
+
+예시
+```css
+  .responsive-scale {
+    
+    /* 이미지 자신을 포함하는 피규어의 폭만큼 확장됨 */
+    width: 100%;
+
+    /* 컨테이너의 폭에 맞춰서 크기가 자동으로 늘어난다. */
+    height: auto;
+  }
+```
+
+#### 배경 이미지
+  * 간단하게 설정할 수 있는 콘텐츠 이미지와는 다르게 배경이미지 설정은 조금 복잡하다. 
+
+예시
+```css
+  .responsive-scale-bg {
+    
+    /* 기본적으로 너비 100%, 높이 0으로 설정 */
+    width: 100%;
+
+    /* `!important`는 강제적으로 해당 스타일을 적용하는 문법 */
+    height: 0 !important; 
+    
+    /*  배경이미지 높이는 `padding-bottom` `padding-top` 사용 */
+    /* 이미지 높이 ÷ 이미지 가로 × 100 */
+    padding-bottom: 66.6%; /* 960÷1440×100 */
+    background-image: url(img/fluid/image-1440x960.jpg) no-repeat center;
+    
+    /* contain / cover */
+    background-size: contain;
+  }
+```
+
+### 재단 이미지
+  * 이미지를 포함하는 컨테이너 요소의 폭에 맞춰 크기가 동적으로 잘려지는 이미지를 말한다. 
+
+#### 배경이미지
+```css
+  .responsive-crop {
+    width: 100%;
+    height: 960px; 
+    padding-bottom: 66.6%; /* 960÷1440×100 */
+    background-image: url(img/fluid/image-1440x960.jpg) center top;
+    background-size: cover;
+  }
+```
+
+#### 재단 이미지 
+```css
+  .responsive-crop-container {
+    position: relative;
+    height: 120px; 
+  }
+  .responsive-crop-content {
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    height: auto;
+    transform: translateX(-50%);
+  }
+```
+
+### 유연한 미디어
+  * 아이프레임을 포함하는 컨테이너 요소의 폭에 맞춰 크기가 변경되는 것을 말한다. 
+  * 가장 중요한 포인트는 비율!
+  * 유튜브 등의 아이프레임이나 다음, 네이버 맵과 같은 지도서비스 같은 경우에 아래의 기법을 사용해야 한다. 
+```css
+  .responsive-container {
+    position: relative;
+    /* 4:3 = 75%,
+       16:9 = 56.25%,
+       21:9 = 42.857142857 */
+
+    /* `padding-bottom` / `padding-top` */
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .responsive-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+  }
+```
 
 
   
