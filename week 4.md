@@ -774,6 +774,29 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
   }
 ```
 
+---
+# 4day
+
+### 질문
+  * Q) 
+    실습영상에서 아래의 코드 형태를 봤는데요. 아래 `.browser-view > * { }`에서 ` > * `는 header, main, footer등 각 직계 지식들 모두에게 작성한 css 코드를 적용하라는 의미인가요?
+  ```css
+  .browser-view {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .browser-view > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  ```
+
+
+### 장치 독립적 픽셀
+
 #### 픽셀 밀도 
 
 * 픽셀 밀도란?
@@ -812,3 +835,109 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
     + 2. 크기 바꾸기 
       - 픽셀 밀도를 낮추는 것만으로는 충분하지 않아 특정 디자인 요소들은 큰 크기로 만들어야 한다. 아이패드 앱 아이콘에서 이러한 경우가 발생하는데 아이폰에서는 앱 아이콘이 60x60 크기인데 아이패드의 큰 스크린은 더 많은 공간을 필요로 하기에 76x76 크기의 앱 아이콘을 사용하여 시각적인 크기 개선을 해야 한다. 
 
+---
+# 5day
+
+### 중단점과 미디어 쿼리
+
+#### 브레이크포인트
+  * RWD 프로젝트 진행 전, 주요 사용자 층이 사용하는 디바이스 환경을 분석한 후, 최적화되고 유효한 **중단점**(Breakpoint)을 설계(Dedign)를 한다. 
+  * 반응형 웹에서 필수로 필요한 공부이다. 
+  <!-- * 디바이스가 가지고 있는 너비가 얼마인지에 따라 설계가 달라지게 된다. 딱히 답이 정해져있는 것은 아니다. 제작자가 서비스를 기획하는 단계에서 사용자의 환경을 분석해야 한다. 분선된 설계를 토대로 잡아야한다(?) / 설계를 어떻게 잡을 것인가??? 어떤 방법을 사용할 것인가??? 과연 참고할 수 있는 통계데이터는 어디 있는 것인가-->
+
+#### CSS 미디어쿼리 
+  * 미디어쿼리는 각 디바이스 환경을 식별하는 조건 처리 구문으로 CSS3에서 정식 지원한다. 이를 사용하여 설계된 중단점에 맞는 최적화된 뷰 디자인을 구현할 수 있다.  
+  * 속성 
+    + type : screen, printer, tv, integration css rule, projector
+    + expression : width/height, color, aspect ratio, resolution, orientation
+    + css code : 적용할 css 코트를 입력한다. 
+  ```css
+    @media {type} and {expression} { ... }
+
+    <!-- 사용자의 화면이 스크린이고 최소 너비가 800픽셀 이상이라면 작성한 css코드를 적용한다. -->
+    @media {screen} and {min-width: 800px} { ... }
+  ```
+
+  * 디바이스 가로/세로 폭 길이 감지
+  ```css
+    /* width */
+    @media screen and (max-width: 600px) { ... }  /* 사용자의 화면이 스크린이고 최고 너비가 600픽셀이다 */
+    @media screen and (min-width: 200px) and (max-width: 400px) { ... }  /* 스크린 화면이면서 최소 너비가 200픽셀이고 최대 너비는 400픽셀이다 */
+
+    /* height */
+    @media screen and (max-height: 768px) { ... } /* 스크린 화면이면서 최대 높이가 786픽셀이다 */
+    @media (min-height: 500px) and (max-height: 580px) { ... }  /* 스크린, 프린트 등 상관없이 높이가 500픽셀과 580픽셀사이의 디자인을 말한다. */
+  ```  
+
+  * 디바이스 회전 방향 감지
+  ```css
+    /* portrait 세로 */
+      @media screen and (orientation: portrait) { ... }  /* 스크린 환경이면서 회전 방향이 세로가 길다면 */
+      
+    /* landscape 가로 */  
+      @media screen and (orientation: landscape) { ... }  /* 스크린 환경이면서 회전 방향이 가로가 길다면 */
+  ```
+
+  * 디바이스 픽셀 밀도 감지
+    + 장치마다 픽셀 밀도가 다르다
+  ```css 
+    /* 300 DPI */
+      @media print and (min-resolution: 300dpi) { ... } /* 인쇄 출력 화면이면서 최소의 해상도가 300dpi  */
+      
+    /* x2 Device Pixel Density 장치가 2배의 픽셀 농도로 놀려준다 */ 
+      @media screen and (min-resolution: 2dppx) { ... }  /* 픽셀당 도트의 개수가 두 배이다.  */
+  ```
+
+  * 논리 연산자 응용
+  ```css
+    /* AND */
+      @media all and (color) { ... }  /* 모든 컬러를 사용할 수 있는 환경. 즉, 흑백이 아닌 환경 */
+
+    /* NOT + AND */
+      @media not screen and (color) { ... } /* 오직 스크린만 아니고 컬러라면 */
+
+    /* ONLY + AND */
+      @media only screen and (orientation: portrait) { ... }  /* 오직 스크린 환경이어야 하고 회전 방향이 세로가 길다면 */
+
+    /* AND */
+      @media all and (orientation: landscape) { ... }, /* 모든 환경이면서 가로가 긴 회전 방향이라면 그리고 */
+             all and (min-width: 480px) { ... }        /* 모든 환경이면서 최소 너비가 480픽셀이라면 */
+  ```
+
+  * 호환성 
+    + 2016년 현재 미디어쿼리는 웹 표준으로 대부분의 웹 브라우저에서 사용 가능하다. 단, dppx 단위의 경우는 Edge, Chrome, Firefix, Opera Android 만 지원하고 있다. 
+
+  * 모바일 퍼스트(Mobile First)
+    + 현 시대 사용자 대부분이 모바일 환경에서 우선 접속합니다. 필요에 따라서는 데스크탑 환경이 필요(업무) 할 수 있습니다.    
+    사용자를 고려한 설계 관점에서 사용자 대다수가 우선하는 모바일 환경 디자인(설계)이 우선시 되어야 합니다.
+
+  * 중단점 설계
+    + 가장 먼저 해야 하는 것은 서비스를 이용하는 주 고객층의 행동 패턴을 분석하는 것이다.     
+    모바일, 태블릿, 데스크탑, 와이드 스크린 사용율 통계를 검토한 후, 기기의 속성(스크린 폭, 해상도 등)을 고려하여 중단점을 설계해야 합니다.
+
+  * 중단점 설계를 위한 참고 자료
+    + 통계 사이트
+      - <http://gs.statcounter.com> 
+      - <http://www.w3counter.com/globalstats.php?year=2018&month=3> 
+      - <http://www.internettrend.co.kr/trendForward.tsp>
+      - <http://viewportsizes.com>  
+    + 각 스크린에서의 뷰포트 테스트 할 수 있는 사이트 
+      - <http://troy.labs.daum.net>   
+      - <https://material.io/resizer>
+    * Devtools의 device toolbar에서 각 스크린에서 표시되는 화면을 볼 수 있다.
+
+
+  * **고려해야 할 중단점**
+
+    ⇐  (640) / 800  ⟺  (1024) / 1366  ⟺  1920  ⇒
+  모바일            테블릿            데스크탑     와이드 스크린
+
+    ※ **중단점은 최소한으로 설정**할 필요가 있다. 중단점이 많아지게 되면 기획/디자인/개발 과정이 모두 고통스러워지기 때문.
+
+  * 고민해야 할 사용자 행동 패턴
+
+    1920 스크린 해상도를 사용하는 사용자가 풀 스크린으로 브라우저를 화면 가득 띄워놓고 사용하는지 확인 필요.
+    그렇지 않다면 1366 기준으로 설계하되, 1920까지 고려하는 방향으로 전략 수립.
+    사용자의 경험 등을 토대로 분석하여 UI를 구현해야 한다. 
+
+   
