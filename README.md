@@ -841,9 +841,9 @@ Window와 Mac 상관없이 UI 편집이 가능하다
     p { color: #d5727e; } // 우선권을 가진다.
     ```
 
-### 타이포 그래피
+## CSS - 타이포 그래피
 
-#### 폰트(Fonts) 스타일 속성
+### 폰트(Fonts) 스타일 속성
  * 폰트에 영향을 주는 속성으로 적용되는 모양, 크기, 굵기, 기울임 등
    + font-family 모양 
    + font-size 크기 
@@ -883,60 +883,60 @@ Window와 Mac 상관없이 UI 편집이 가능하다
 
 * `<local>` 속성 : 서버에서 다운받지 않고 사용자의 컴퓨터의 해당 폰트가 있으면 그 폰트를 사용해라.
 
-#### 텍스트(Text) 레이아웃 속성
+### 텍스트(Text) 레이아웃 속성
 * 텍스트 간격 및 레이아웃 기능에 영향을 주는 속성으로 행간, 자간, 어간, 정렬, 변형, 꾸밈, 그림자
 
- ##### line-height 행간 
+ #### line-height 행간 
    - 최소 1.5이상이 글읽기에 용이하다.
 
- ##### letter-spacing 자간 
+ #### letter-spacing 자간 
    - px값 보다는 em단위로 설정하는것이 좋음.
 
- ##### word-spacing 어간 (단어사이의 간격)
+ #### word-spacing 어간 (단어사이의 간격)
    - px, em(소수점) 단위 사용
 
  + 행간 > 어간 > 자간 - 가독하기가 쉬워짐.   
        
 
-##### text-align 정렬 
+#### text-align 정렬 
  + left(기본값) / center / right
  + 속성 또한 부모로 부터 상속 받을 수 있다. 
 
-##### text-indent 들여쓰기
+#### text-indent 들여쓰기
  + 첫 번째 줄 라인만 들여쓰기 가능하다. 
  + padding-left를 사용하면 전체 들여쓰기 가능
  + em단위 사용(마이너스 값 사용 가능)
 
-##### text-transform 변형 
+#### text-transform 변형 
  + uppercase(모두 대문자), lowercase(모두 소문자)
 
-##### font-variant 변형 
+#### font-variant 변형 
  + small-caps(대문자만 크게, 소문자는 작은대문자) 
  + all-small-caps(모두 크기가 작은 대문자)
  + 영문에서만 사용, 한글을 적용 X
 
-##### text-decoration 꾸밈 
+#### text-decoration 꾸밈 
  + underline(밑줄) : 판독의 어려움을 주기 때문에 권장하지 않음
  + overline(윗줄) 
  + line-through(중간줄)
 
-##### white-space 공백처리
+#### white-space 공백처리
 
 normal 기본값 : 공백 없이 그대로 유지
 pre - 텍스트를 입력한 그대로 유지 
 pre-line - 텍스트를 입력한 그대로 유지하면서 들여쓰기 제거
 nowrap - 랩핑을 하지 않는다는 뜻, 한 줄로 길게 나타남
 
-##### word-break - 단어의 분리를 어떻게 할 것인지 결정
+#### word-break - 단어의 분리를 어떻게 할 것인지 결정
 
  + break-all
   (공백/띄어쓰기) 수고했어.오늘도
   (음절)         수.고.했.어.오.늘.도
 
-##### word-wrap : 박스의 가로 영역을 넘친 단어 내에서 임의의 분리 여부를 결정하여 줄바꿈에 관여
+#### word-wrap : 박스의 가로 영역을 넘친 단어 내에서 임의의 분리 여부를 결정하여 줄바꿈에 관여
  + break-word
 
-##### text-shadow 그림자
+#### text-shadow 그림자
  + text-shadow : x y blur sprea color;
  ```
  text-shadow : 4px 4px 0px #9bdbde, 
@@ -945,3 +945,13 @@ nowrap - 랩핑을 하지 않는다는 뜻, 한 줄로 길게 나타남
  + 그림자의 색상값을 멀티로 줄 수 있다. (콤마(,)로 구분)
  + 그림자를 적용하지 않은 글자가 가독성이 더 좋다
 
+### px, rem, em, vw, vh
+  * px : 폰트의 크기를 고정하고 싶을 때 사용  
+    + 모든 기기에서 동일한 사이즈로 고정, 브라우저의 크기가 작아져도 사이즈는 변하지 않는다. 
+  * em : 앞서 적용된 폰트 크기의 배수로 적용됩니다.
+    +  조상, 부모 요소가 정한 폰트의 크기를 기준으로 한다
+    ```css 
+    
+  em, 
+  vw, 
+  vh
