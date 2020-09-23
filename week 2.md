@@ -16,7 +16,7 @@
 
 ## 임베디드(Embedded) 요소
 
-## HTML 픽쳐(Picture) 요소
+### HTML 픽쳐(Picture) 요소
 
   * **0개 이상의 `<source>` 요소**와 **1개 이상의 `<img>`**를 포함하는 컨테이너 요소.
   * 다양한 스크린 환경(스마트폰, 테블릿, 데스크탑 등)에 맞는 적합한 이미지를 제공하기 위한 목적으로 사용.
@@ -34,7 +34,7 @@
   usemap - 이미지 맵 연결 설정
   ```
 
-## `<source>` 요소
+### `<source>` 요소
   + `<picture>`, `<audio>`, `<video>` 요소의 **다중 미디어 리소스를 지정**하기 위해 사용.
   + 중첩 가능한 요소
   + `<srcset>`속성을 가짐 
@@ -77,7 +77,7 @@
   * `<midea>`속성을 사용해서 반응형 웹을 만들 수 있다  
 
 
-## HTML 비디오(Video) 요소
+### HTML 비디오(Video) 요소
 
   * `<video>` 요소
     + 동영상 콘텐츠를 HTML 문서에 포함하기 위해서 사용.
@@ -125,7 +125,7 @@
   </video>
   ```
 
-## HTML 오디오(Audio) 요소
+### HTML 오디오(Audio) 요소
 
   * `<audio>` 요소
     + 동영상 콘텐츠를 포함하기 위해서 사용.
@@ -166,7 +166,7 @@
 </figure>
   ```
 
-## HTML 트랙(Track) 요소
+### HTML 트랙(Track) 요소
   * 비디오/오디오 재생 시, 자막을 표시.
   * `<default>` 
     + 속성을 설정하지 않을 경우, 자막 사용 안함 됨
@@ -205,7 +205,7 @@
 
   ```
 
-## HTML 인라인 프레임(iframe) 요소
+### HTML 인라인 프레임(iframe) 요소
 
   * 인라인 프레임(Inline Frame)에 다른 HTML 페이지를 포함하여 화면에 표시.
 
@@ -250,13 +250,13 @@
     tabindex="0">
     </iframe>
 ```
-## HTML 이미지 맵(map) 요소
+### HTML 이미지 맵(map) 요소
 
-### `<map>` 요소
+#### `<map>` 요소
   * 이미지 맵(클릭 가능한 링크 영역)을 정의하기 위해 <area>와 함께 사용됨.
   * 이미지 맵 좌표 생성: https://www.image-map.net/
 
-### `<area>` 요소
+#### `<area>` 요소
   * 이미지의 핫스팟 지역 정의, 하이퍼링크 설정. <map> 내부에서만 사용 가능.
   * 여러개 사용 가능 (원, 사각형, 다각형)
   * **`<alt>`(필수)**, `<title>` 성분을 사용해 주기
@@ -296,7 +296,7 @@
   </map> 
 ```
 
-## HTML 확장 가능한 벡터그래픽(SVG) 요소
+### HTML 확장 가능한 벡터그래픽(SVG) 요소
   * 확장가능한 벡터 그래픽(SVG)은 2차원의 벡터 그래픽을 기술하기 위한 XML 마크업 언어.
   * `<SVG>` 요소는 내용이 상당히 방대하다
   * 이미지를 직접적으로 삽입하는 것과 svg요소를 사용하여 그림을 삽입하는 것 차이
@@ -394,23 +394,23 @@
         - blockquote
         - canvas
         - dd
-        - div
+        - **div**
         - dl
         - fieldset
-        - figcaption
-        - figure
-        - footer
+        - **figcaption**
+        - **figure**
+        - **footer**
         - form
-        - h1~6
-        - header
+        - **h1~6**
+        - **header**
         - hr
         - noscript
         - ol
         - output
-        - p
+        - **p**
         - pre
-        - section
-        - table
+        - **section**
+        - **table**
         - tfoot
         - ul
         - video
@@ -511,62 +511,64 @@
   * max-width   --  박스 최대 너비
   * max-height  --  박스 최대 높이
 
-  ### [BOX SIZING]
-   * content-box
-   * border-box
+### [BOX SIZING]
+  * content-box
+  * border-box
+    - content-box (default):  
+    width = content-box  
+    height = content-box
+    - border-box:  
+      width = content-box + padding-box + border-box  
+      height = content-box + padding-box + border-box  
 
-     - content-box (default):  
-      width = content-box  
-      height = content-box
+      ```css
+      box-sizing: border-box;
+      box-sizing: content-box;
+      ```
 
-     - border-box:  
-        width = content-box + padding-box + border-box  
-        height = content-box + padding-box + border-box  
-
-        ```css
-        box-sizing: border-box;
-        box-sizing: content-box;
-        ```
-
-       ```css
-       .box-sizing { 
-         box-sizing: border-box, content-box;
-         width: 200px; 
-         height: 100px;
-         border: 1px solid;
-         text-align: center;
-         line-height: 100px;
-       }
-       ```
+      ```css
+      .box-sizing { 
+        box-sizing: border-box, content-box;
+        width: 200px; 
+        height: 100px;
+        border: 1px solid;
+        text-align: center;
+        line-height: 100px;
+      }
+      ```
 
 
 
-  ### [FLOW]
-   * `overflow`  --  박스를 넘쳐난 상태(흐름) 조정   
-   부모 박스의 영역을 자식 박스가 **넘어서게 될 때 화면에 어떻게 렌더링할지를 결정**하게 됩니다
+### [FLOW]
+  * `overflow`  --  박스를 넘쳐난 상태(흐름) 조정   
+  부모 박스의 영역을 자식 박스가 **넘어서게 될 때 화면에 어떻게 렌더링할지를 결정**하게 됩니다 (단, 요소의 가로, 세로값이 지정된 상태에서 표현 가능)
+    - `auto` 자동 값을 사용할 경우:   
+      + 흐름이 넘치면 x/y 축 모두 스크롤 바가 자동으로 생깁니다.   
+      + 흐름이 넘치지 않으면 스크롤바는 보이지 않습니다.
+      + 키보드로 컨트롤 불가능
+    - `visible` : 
+      + 기본값, 흐름이 넘친 영역이 모두 보여집니다.
+      + auto, hidden 속성을 초기화
+    - `hidden` : 흐름이 넘친 영역이 모두 감춰집니다.
+    - `scroll` : x/y축 스크롤이 무조건 보입니다.
+    - `overflow-x` : x축 방향만 overflow 설정을 수행합니다.
+    - `overflow-y` : y축 방향만 overflow 설정을 수행합니다.
 
-     - `auto` 자동 값을 사용할 경우:   
-     흐름이 넘치면 x/y 축 모두 스크롤 바가 자동으로 생깁니다.   
-     흐름이 넘치지 않으면 스크롤바는 보이지 않습니다.
+---
+# 3day
 
-     - `visible` : 흐름이 넘친 영역이 모두 보여집니다.
-     - `hidden` : 흐름이 넘친 영역이 모두 감춰집니다.
-     - `scroll` : x/y축 스크롤이 무조건 보입니다.
-     - `overflow-x` : x축 방향만 overflow 설정을 수행합니다.
-     - `overflow-y` : y축 방향만 overflow 설정을 수행합니다.
-
-## 3day
-
-  ### 질문
+## 질문
   * Q) 요소와 태그는 의미가 같나요?    
-       예를들어 `<ol>`요소, `<ol>`태그. 둘 중 어떤식으로 명칭해도 상관없나요? 
+        예를들어 `<ol>`요소, `<ol>`태그. 둘 중 어떤식으로 명칭해도 상관없나요? 
   * A) 요소와 태그는 다르다. 그러나 혼용해서 쓰는 경우가 많다. HTML 요소는 여는태그, 속성, 닫는태그 및 스 사이에 있는 모든 것의 모음이다. 반면에 HTML 태그(열림 또는 닫힘)는 요소의 시작 또는 끝을 표시하기 위해 사용된다.     
   그러나 일반적으로 HTML요소와 HTML태그라는 용어는 상호교환이 가능하다.    
   참고 : <https://www.tutorialrepublic.com/html-tutorial/html-elements.php>
     
+## 인터랙티브 요소 
 
 
-  ## `<details>` 요소
+
+### `<details>` 요소
   - 디스클로저 위젯(disclosure widget, 참고: https://goo.gl/uznvFY)으로 정보를 감추거나, 펼쳐서 보여준다.   
     (보다 자세한 정보를 알려줄 때 사용)
     - 모든 정보를 일시에 공개하지 않고 사용자의 요구에 맞춰 정보를 공개할 수 있다. (화면의 복잡함을 줄임)
@@ -592,7 +594,7 @@
              </details>
        ```
 
-  ## `<summary>` 요소
+### `<summary>` 요소
    - `<details>` 요소의 레이블/캡션(제목), 서머리(요약) 등을 표시한다.
    - 폼 `<fieldset>` 요소의 제목을 `<legend>`가 표시하듯 비슷하다.
 
@@ -620,7 +622,7 @@
         </section>
       ```
 
-  ## `<dialog>` 요소
+### `<dialog>` 요소
    - 다이얼로그(Dialog, 참고: https://goo.gl/pQ7gSX)는 사용자의 결정 또는 정보 입력을 요구하는 컴포넌트를 말함.
    - '모달 윈도우'(레이어 팝업) 또는 '대화상자'로도 불린다.
 
@@ -641,20 +643,24 @@
         </dialog>
         ```
 
+---
+#### [참고] 
+    더미텍스트 (로렘입숨 Lorem-Ipsum)
+    * 콘텐츠와 텍스트가 보이는 상황을 가정해, 임의의 텍스트를 넣어서 폰트나 전체적인 레이아웃을 맞춰볼때 쓰는 용도
+      + 영어 <https://www.lipsum.com/>
+      + 한글 <http://hangul.thefron.me/>
+---
 
-  ---
-  #### [참고] 
-     더미텍스트 (로렘입숨 Lorem-Ipsum)
-      * 콘텐츠와 텍스트가 보이는 상황을 가정해, 임의의 텍스트를 넣어서 폰트나 전체적인 레이아웃을 맞춰볼때 쓰는 용도
-        + 영어 <https://www.lipsum.com/>
-        + 한글 <http://hangul.thefron.me/>
-  ---
-  ## `<script>` 요소
+## 스크립팅 요소들
+
+### `<script>` 요소
    - JavaScript 코드 또는 파일을 HTML 문서에 작성하거나, 연결할 때 사용한다.
+  * 스크립트 요소 : <https://developer.mozilla.org/ko/docs/Web/HTML/Element/script>
+  * 참고) URI, URL 차이 정리 : <https://velog.io/@pa324/%EA%B0%9C%EB%B0%9C%EC%83%81%EC%8B%9D-URI-URL-%EC%B0%A8%EC%9D%B4-%EC%A0%95%EB%A6%AC>
 
       [속성]
-        - src
-        - type
+        - src : 외부 스크립트를 가리키는 URI이다. 문서 내에 스크립트를 직접 삽입하는 것 대신 사용할 수 있다.
+        - type : 스크립트의 유형을 나타낸다. 
         - async
         - defer
 
@@ -699,7 +705,7 @@
    </script>
   ```
 
-  ## `<noscript>` 요소
+### `<noscript>` 요소
     - 사용자의 웹 브라우저 환경에서 스크립트를 지원되지 않거나, 스크립트가 꺼져있는 경우, 문서에 표시될 문구를 삽입한다.
 
    ```html
@@ -709,7 +715,7 @@
      </noscript>
    ```
 
-  ## `<canvas>` 요소
+### `<canvas>` 요소
    - JavaScript를 사용하여 그래픽(비트맵)을 그릴 때 사용한다.     
       `<canvas>` 요소로부터 2D 또는 WebGL 컨텍스트 객체를 추출해 그래픽을 그릴 수 있다.
    - SVG는 확대 했을 때 이미지가 깨지지 않지만 canvas는 이미지가 깨진 그래픽 처럼 보이게 된다.
@@ -1314,7 +1320,7 @@ euc-kr 방식으로 인코딩 (예전에 한국에서 사용된 방식)
     <base target="_blank" href="http://www.example.com">
   ```
 
-  ## 포지셔닝 레이아웃
+  ## 포지셔닝(Positioning) 레이아웃
    * 포지셔닝은 **웹브라우저가 렌더링하는 기본 레이아웃 흐름(Normal Layout Flow)을 재정의**하여 흥미로운 효과를 만들어 낼 때 사용합니다. 예를 들어 기본 레이아웃 흐름에서 레이아웃 내부 일부 요소의 위치를 조정하려면 포지셔닝을 사용하여 조정할 수 있습니다.
    * 페이지의 다른 부분 위에 떠있는 UI 요소를 만들고 싶거나, 페이지의 스크롤과 상관없이 항상 브라우저 창의 동일한 위치에 자리한 UI요소를 만들고자 한다면 포지셔닝을 사용합니다.
 
