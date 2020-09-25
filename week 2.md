@@ -825,15 +825,19 @@
 
 ## CSS 배경 스타일링
   
-  ### 배경 색: background-color
-   * 배경의 색상을 넣는 속성
-   * 속성 값은 rgb() 또는 #으로 시작하는 HEX, 색상 이름 등이 들어 갈 수 있습니다.
-
-     ```css
-     iv {
-       background-color: #eee;
-     }
-     ```
+### 배경 색: background-color
+  * 배경의 색상을 넣는 속성
+  * 속성 값은 rgb() 또는 #으로 시작하는 HEX, 색상 이름 등이 들어 갈 수 있습니다.
+  * 초기값 : `background-color: transparent`
+  * 예시
+```css
+iv {
+  background-color: #eee;
+}
+```
+### 배경색을 투명하게 설정하기
+  * `background-color`에 `transparent` 또는 `none`값을 설정해주면 된다. 
+    
     
   ### 배경 위치: background-position
    * background-image의 위치 설정
