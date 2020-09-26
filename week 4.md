@@ -42,37 +42,53 @@
     inline-flex
 
 
-### `flex-direction`
+### flex-direction
   * 주축의 방향을 정렬한다.   
     : `<row>`(기본값) `<row-reverse>` `<column>` `<column-reverse>`  
       row(행) : 행의 방향으로 정렬   
       column(행) : 열의 방향으로 정렬
 
 
-### `flex-wrap`
+### flex-wrap
   * 부모 컨테이너 보다 자식 아이템들의 크기가 크다면 컨테이너 박스를 넘처난 아이템은 줄바꿈하여 아래로 내려간다.
   * nowrap   
     wrap   
     wrap-reverse(교차축을 반대로)
 
-  ```html
-    <html>
-    <head>
-        <style>
-            .flex-container {
-                flex-wrap: wrap;
-                width: 200px; /* 컨테이너 박스의 높이가 높아지면 아이템 박스 사이의 공간도 많아진다. */
-            }
-            .flex-item {
-                flex-shrink: 0; /* ㄴshrink의 기본값 1은 아이템 박스가 부모 컨테이너의 크기에 맞추기 때문에 0으로 설정해 주어야 한다.*/
-                width: 120px; /* 아이템들의 크기를 합한 값이 컨테이너 박스보다 크도록 */
-            }
-        </style>
-    </head>
-    </html>
-  ```
+```html
+<html>
+<head>
+    <style>
+        .flex-container {
+            flex-wrap: wrap;
+            width: 200px; /* 컨테이너 박스의 높이가 높아지면 아이템 박스 사이의 공간도 많아진다. */
+        }
+        .flex-item {
+            flex-shrink: 0; /* ㄴshrink의 기본값 1은 아이템 박스가 부모 컨테이너의 크기에 맞추기 때문에 0으로 설정해 주어야 한다.*/
+            width: 120px; /* 아이템들의 크기를 합한 값이 컨테이너 박스보다 크도록 */
+        }
+    </style>
+</head>
+</html>
+```
 
-### `align-items`
+### flex-flow 
+  * flex-direction, flex-wrap 속성의 단축 속성이다. 
+
+```css
+a {
+  /* flex-flow: <'flex-direction'> */
+  flex-flow: row;
+  
+  /* flex-flow: <'flex-wrap'> */
+  flex-flow: nowrap;
+
+  /* flex-flow: <'flex-direction'>과 <'flex-wrap'> */
+  flex-flow: row nowrap;
+}
+```
+
+### align-items
   * 각 아이템 개별적으로 제어하며 수직과 관련된 정열을 설정.
   * stretch을 제외한 나머지 값들은 컨텐츠 크기에 맞게 아이템의 크기가 조정된다.   
 
@@ -83,7 +99,7 @@ center         : 아이템이 컨테이너 가운데에 위치
 baseline       : 아이템의 컨텐츠들이 컨테이너 가운데 밑줄에 맞춰서 배열됨
 
 
-### `align-content`
+### align-content
   * 아이템들의 그룹을 제어하며 수직과 관련된 정열을 설정.
   * `flex-direction`에서 주축의 방향이 바뀜에 따라 같이 바뀐다. 
 
@@ -95,7 +111,7 @@ baseline       : 아이템의 컨텐츠들이 컨테이너 가운데 밑줄에 �
     space-around   
     space-evenly   
 
-### `justify-content`
+### justify-content
 - 수평과 관련된 정열을 설정할 때 사용.
 * `flex-direction`에서 주축의 방향이 바뀜에 따라 같이 바뀐다. 
 * stretch값이 없는 대신 grow를 1로 적용해 주면 stretch를 적용한 것 처럼 나타난다. 
@@ -105,7 +121,7 @@ center
 flex-end    
 space-between : 컨테이너 박스 양 끝에 공간이 없으며 아이템들 사이에 균일하게 공간을 만듬.    
 space-around : 컨테이너 박스 양 끝에 공간이 있으며 아이템들 사이에 균일하게 공간을 만듬.     
-space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 양끝의 공간의 크기를 같게    만들어줌.
+space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 양끝의 공간의 크기를 같게 만들어줌.
 
 
 ```html
@@ -794,7 +810,7 @@ space-evenly : space-around값과 비슷하나 차이점은 컨테이너 박스 
   }
   ```
 
-
+                                                                                                                                                        
 ## 장치 독립적 픽셀
 
 ### 픽셀 밀도 
