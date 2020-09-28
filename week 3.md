@@ -5,25 +5,25 @@
 
 ## 2D 트랜스폼
 
-  * 2D 트랜스폼(Transform)
-  
-     + 회전
-      - rotateX(angle)
-      - rotateY(angle)
-      - rotate(angle)
-     + 크기
-      - scaleX()  // **scalex(1) = 1 값은 100%를 의미** 
-      - scaleY()
-      - scale(x, y) (X, Y 동시에 적용)
-      - scale() (X, Y 동시에 같은 값을 적용) 
-     + 이동
-      - translateX()
-      - translateY()
-      - translate(x, y) (X, Y 동시에 적용)
-     + 비틈
-      - skewX()
-      - skewY()
-      - skew(x, y)
+* 2D 트랜스폼(Transform)
+  + 회전
+    - rotateX(angle)
+    - rotateY(angle)
+    - rotate(angle)
+  + 크기
+    - scaleX()  // **scalex(1) = 1 값은 100%를 의미** 
+    - scaleY()
+    - scale(x, y) (X, Y 동시에 적용)
+    - scale() (X, Y 동시에 같은 값을 적용) 
+    - 값이 1보다 작아지면 크기가 작아지고 1보다 커지면 크기가 커진다. 
+  + 이동
+    - translateX()
+    - translateY()
+    - translate(x, y) (X, Y 동시에 적용)
+  + 비틈
+    - skewX()
+    - skewY()
+    - skew(x, y)
 
   ```css
     /* 회전 */
@@ -51,6 +51,7 @@
     /* 비틈 */
     .headline {
       transform: skewX(30deg);
+      /* transform: skew(15deg, 15deg); */
     }
     
     /* 이미지의 회전축 */
@@ -77,13 +78,11 @@
     + CSS 트랜지션 사용하기 : <https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions>
 
   * CSS 트랜지션(Transition): IE 10+
-
     + `transition-property`         트랜지션 속성
-      - `<all>`(기본값)
+      - `<all>`(기본값), `<none>`
     + `transition-duration`         트랜지션 시간
       - 변화가 일어나는 기간(1.2s, 4s), 초단위, (기본값 0s)
     + `transition-timing-function`  트랜지션 타이밍 함수
-
       - 트렌지션 효과가 진행하는 동안 속도의 변화를 지정    
         - ease : 기본값, 천천히 시작해서, 빠르게 진행하며, 천천히 끝남. 
           + cubic-bezier(0.25,0.1,0.25,1)
@@ -91,7 +90,7 @@
           + cubic-bezier(0,0,1,1)
         - ease-in : 천천히 시작
           + cubic-bezier(0.42,0,1,1)
-        - ease-uot  : 천천히 끝남
+        - ease-out  : 천천히 끝남
           + cubic-bezier(0,0,0.58,1)
         - ease-in-out : 천천히 시작해서 천천히 끝남
           + cubic-bezier(0.42,0,0.58,1)
@@ -105,11 +104,9 @@
           /* CSS 기본 설정 가능한 값 */
           transition-timing-function: linear;
         ```
-
     + `transition-delay`            트랜지션 지연시간
       - 트랜지션 효과가 시작되기 전 기다리는 시간
     + `transition`                  트랜지션 속기형
-
       - transition: `<prop>` `<dur>` `<timfn>` `<delay>`
       ```css
       .headline {
@@ -120,25 +117,25 @@
       }
       ```
     
-    ```css
-    .headline {
-          /* 초기 상태(initial state) */
-      position: absolute;
-      top: 100px;
-      left: 40%;
-      margin-left: -156px;
-      transition-property: top, transform; /*또는 all*/
-      transition-duration: 0.45s 0.8s;
-      transition-timing-function: linear;
-      transition-delay: 0.4s, 0.4s;
-    }
-    
-      .headline:hover {
-          /* 종료 상태 (final state) */
-          top: 100px;
-          transform: rotate(10deg);
-      }
-    ```
+```css
+.headline {
+/* 초기 상태(initial state) */
+  position: absolute;
+  top: 100px;
+  left: 40%;
+  margin-left: -156px;
+  transition-property: top, transform; /*또는 all*/
+  transition-duration: 0.45s 0.8s;
+  transition-timing-function: linear;
+  transition-delay: 0.4s, 0.4s;
+}
+
+.headline:hover {
+/* 종료 상태 (final state) */
+  top: 100px;
+  transform: rotate(10deg);
+}
+```
 
 ## 3D 트랜스폼 (Transforms)
 
@@ -338,21 +335,21 @@
 
 ## HTML - 테이블 요소
 
-  `<table>` 요소
-  - 테이블 **몸체**에 해당되며, 행(row)/열(column) 및 셀(cell)을 포함한다.
-    복잡한 내용을 x, y축에 따라 이해하기 쉽게 데이터를 구조화하는데 테이블을 사용한다.   
-    가장 좋은 테이블 디자인은 최대한 단순하게 표를 구성하는 것이다.   
-    테이블 내 테이블을 중첩해서는 안된다.   
-    테이블을 레이아웃(배치) 목적으로 사용해서는 안된다.   
-    border 속성을 사용해 테두리를 그릴 수 있다. (CSS로 대체하는 것이 좋다)
+  * `<table>` 요소
+    - 테이블 **몸체**에 해당되며, 행(row)/열(column) 및 셀(cell)을 포함한다.
+      복잡한 내용을 x, y축에 따라 이해하기 쉽게 데이터를 구조화하는데 테이블을 사용한다.   
+      가장 좋은 테이블 디자인은 최대한 단순하게 표를 구성하는 것이다.   
+      테이블 내 테이블을 중첩해서는 안된다.   
+      테이블을 레이아웃(배치) 목적으로 사용해서는 안된다.   
+      border 속성을 사용해 테두리를 그릴 수 있다. (CSS로 대체하는 것이 좋다)
 
-  `<caption>` 요소
-  - 테이블의 **제목**을 명시적으로 제공하며, 제작자는 표의 내용을 이해할 수 있도록 정보를 제공해야 함.   
-    테이블 내용이 복잡해 설명이 필요하다면 아래 나열된 방법 중 하나를 선택해 기술해야 한다.
+  * `<caption>` 요소
+    - 테이블의 **제목**을 명시적으로 제공하며, 제작자는 표의 내용을 이해할 수 있도록 정보를 제공해야 함.   
+      테이블 내용이 복잡해 설명이 필요하다면 아래 나열된 방법 중 하나를 선택해 기술해야 한다.
 
-    * [설명(summary)을 추가하는 방법]
-        1. aria-describedby 속성을 사용해 설명 단락(paragraph)을 연결
-        2. `<figure>` 요소에 aria-labelledby 속성을 사용해 제목(caption)을 연결
+  * [설명(summary)을 추가하는 방법]
+    1. aria-describedby 속성을 사용해 설명 단락(paragraph)을 연결
+    2. `<figure>` 요소에 aria-labelledby 속성을 사용해 제목(caption)을 연결
 
   ```hrml
   <p id="compare-shoes-table">국제(한국, 영궁, 유럽) 성인 남성 운동화 사이즈 비교 표로 4행 12열로 구성되어 있습니다.</p>
@@ -361,20 +358,16 @@
 
   + `<tr>` 요소
     - 테이블의 **행(row)**을 말하며 내부에 셀 제목(header), 셀 내용(data)을 포함한다.
-      
   + `<th>` 요소
     - 테이블 셀 **제목(header cell in a table)**으로 **행(tr) 내부에 포함되어야 한다.**
-
     * [속성]   
-          **`<scope>`**: 행(row) 또는 열(col), 행그룹(rowgroup), 열그룹(colgroup)의 **제목임을 명시**   
-          `<abbr>`: 제목이 길어 축약(Abbreviation)이 필요할 때 사용   
-          `<colspan>`: 열(column)을 그룹 지을 때(병합) 사용   
-          `<rowspan>`: 행(row)을 그룹 지을 때(병합) 사용
-
-  ```html
+      - **`<scope>`**: 행(row) 또는 열(col), 행그룹(rowgroup), 열그룹(colgroup)의 **제목임을 명시**   
+      - `<abbr>`: 제목이 길어 축약(Abbreviation)이 필요할 때 사용   
+      - `<colspan>`: 열(column)을 그룹 지을 때(병합) 사용   
+      - `<rowspan>`: 행(row)을 그룹 지을 때(병합) 사용
+```html
   <th scope="row">한국(mm)</th>
   ``` 
-
 
   + `<td>` 요소
     - 테이블 셀 **내용(data cell in a table)**으로 **행(tr) 내부에 포함되어야 한다.**
@@ -590,8 +583,9 @@
         /* 박스 그림자 설정 ------ */
     box-shadow: 0 0 0 1px #3f3f3f; 
 
-        /* 둥근 테두리 설정 ------ */
+        /* 박스 둥근 테두리 설정 ------ */
         /* 순서 : 왼쪽상단 오른쪽상단 오른쪽하단 왼쪽하단 */
+        /* width값의 50% 즉, 절반 값을 사용한다.  */
     border-radius: 170px 0 0 170px; 
     }
     ```
@@ -810,7 +804,7 @@ border-image-slice: 위 오른쪽 아래 왼쪽;
       [속성]
         - name : 서버의 이름
         - placeholder : 사용자에게 무엇을 입력해야 할지 도움을 준다. 
-        - value
+        - value : 사용자가 입력하기 전에 미리 입력되어있는 텍스트
         - readonly : 읽기만 가능 사용자가 입력할 수 없음(value 값 설정 가능)
         - required : 필수 입력사항, 입력하지 않을 시에 전송 불가
         - disabled : 비활성화
@@ -819,13 +813,13 @@ border-image-slice: 위 오른쪽 아래 왼쪽;
         - list
 
       [유형]
-        - text : 텍스트를 입력할 수 있는 사각형 박스 생성
-        - password : 텍스트 입력 시에 ...과 같은 형태로 입력됨
-        - checkbox : 
-        - radio : 
+        - **text** : 텍스트를 입력할 수 있는 사각형 박스 생성
+        - **password** : 텍스트 입력 시에 ...과 같은 형태로 입력됨
+        - checkbox
+        - radio
         - file : 파일을 전송할 때 사용 (form 요소에 'enctype="multipart-formdata"와 method 방식은 POST로 반드시 입력해야 함)
-        - submit 
-        - button 
+        - **submit** : 클릭시에 페이지가 바뀜
+        - **button** : 클릭시 아무일도 일어나지 않음(javascript와 함께 사용)
         - image
         - reset 
         - hidden : 사용자에게 보여지지 않으며 데이터를 전송할 때 사용 
@@ -997,8 +991,8 @@ border-image-slice: 위 오른쪽 아래 왼쪽;
   * [속성]
     - name
     - placeholder
-    - rows
-    - cols
+    - rows : 입력할 수 있는 글의 줄 수 
+    - cols : 가로로 입력할 수 있는 글자 수
     - readonly
     - required
     - disabled

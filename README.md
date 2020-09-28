@@ -203,6 +203,7 @@
   * souce : `<src>`
   * alternate test : `<alt>` (대체 텍스트)
     + alt 속성을 잘 설정해두면, 시각 장애인이 아니더라도 도움을 받을 수 있습니다. 이미지 링크가 깨질 경우, 화면에 alt 속성 값이 출력 되어 어떤 이미지 였는지 정보를 제공할 수 있습니다.
+  * 기본적인 `display`는 `inline`이다.
 
 #### HTML 문서는 이미지를 포함시키지 않는다</h3>
     + 한글이나 워드는 문서에 이미지를 포함시키지만 HTML 문서는 이미지를 포함시키지 않는다.
@@ -695,14 +696,14 @@ abbr [title*="css"]
 
 
 ### CSS 가상 요소 선택자
-* 콜론(::) 두 개 사용
+  * 콜론(::) 두 개 사용
+  * 참고 : <https://www.youtube.com/watch?v=GFaTXsqut_s>
 ```html
-    ::first-letter { ... } 단락의 첫 번째 글자
+    ::first-letter { ... } 첫 번째 글자
     ::first-line   { ... } 첫 줄 문자
-    ::before       { ... } 
-    ::after        { ... } 
+    ::before       { ... } 컨텐츠 시작 부분
+    ::after        { ... } 컨텐츠 끝나는 부분
 ```
-
 # 4day
 
 ### Q & A
