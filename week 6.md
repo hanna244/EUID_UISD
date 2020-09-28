@@ -58,6 +58,11 @@
   * class를 사용해서 태그의 이름을 작성할 때 
     - 명시적으로 작성하는 것이 좋다. 
     - 위치에 관련된 이름은 사용 X
+  * 웹 접근성관련 클래스 `a11y-hidden` 
+    + 화면에 렌더링 되는 텍스트는 아니지만 보조기기가 화면을 읽을 때 해당 컨텐츠를 읽도록 하기 위한 것이다.
+    ```html
+    <h2 class="a11y-hidden">메인 메뉴</h2> <!--숨김 콘텐츠--> 
+    ```
   
 ## 코드 표기법
   * 가장 중요한 것은 **일관성**을 유지하며 사용하는 것이다.
@@ -81,13 +86,45 @@
     + 띄어쓰기 대신 하이픈(-)으로 표기한다. 
     + 예) app-header
 
-
-
-  `<ir>`은 이미지? 
+## `<ir>`은 이미지? 
   - 참고 : <https://m.blog.naver.com/PostView.nhn?blogId=tcloe8&logNo=221600050263&proxyReferer=https:%2F%2Fwww.google.com%2F>
 ```html
 <button type="button" class="button is-open-menu" aria-label="메뉴 열기" title="메뉴 열기">
   <span class="ir"></span>
+</button>
+```  
+```css
+.is-open-menu .ir {
+    display: block;
+    width: 26px;
+    height: 22px;
+    background-color: orange;
+    background-image: url(../images/navigation-button.gif);
+}
+```
+
+## IR 기법 (웹표준)
+  * 이미지 대체텍스트 제공을 위한 CSS 기법이다. 
+  * 다양한 CSS 기법을 사용하여 이미지 대체텍스트를 제공할 수가 있다.
+  * 참고 : <http://darum.daum.net/convention/css/css_ir>
+    + 들어가서 Phark Method 방법도 한 번 보기
+
+### WA IR (권장)
+  * 이미지로 대체할 엘리먼트에 배경이미지를 설정하고 글자는 span 태그로 감싼 후 z-index:-1을 이용하여 화면에 안보이게 처리한다. 
+
+```html
+<button> 
+    <span>검색</span> 
+</button> 
+
+<a href="#"> 
+    <span>검색</span> 
+</a>
+```
+```html
+<button type="button" class="button is-open-menu" aria-label="메뉴 열기" title="메뉴 열기">
+  <span class="ir"></span>
+</button>
 ```  
 ```css
 .is-open-menu .ir {
@@ -146,3 +183,4 @@
     + .jpg/ .png의 차이점  
     + 픽셀농도
     + min-height: 100vh;
+
