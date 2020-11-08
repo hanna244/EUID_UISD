@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    font-size: 2em;
+    
+}
+
+h1, p {
+    margin: 0;
+}
+
+/* 모든 태그에 여백을 없앤다. 많이 쓰진 않는다. */
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+.container {
+    background: lightcoral;
+}
+
+/* .container::after{
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+} */
+
+.item {
+    padding: 5%;
+}
+
+.item-a {
+    background-color: yellow;
+}
+
+.item-b {
+    background-color: yellowgreen;
+}
+
+@media screen and (min-width: 700px) {
+    .container {
+        font-size: 0;
+    }
+
+    .item {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1rem;
+        text-align: center; 
+    }
+
+    .item-a {
+        width: 30%;
+    }
+
+    .item-b {
+        width: 50%;
+    }
+}

@@ -358,24 +358,38 @@
 
 
 ## CSS 박스 모델
-
+  * [참고]
+    - [CSS 박스 모델](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
+    - [CSS 박스 스타일링](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks)
+    - [CSS 레이아웃을 배웁시다 - box model](http://ko.learnlayout.com/box-model.html)
 ## [BLOCK vs INLINE]
   * block level 요소 (Flow Contents : HTML5)
   * inline 요소 (Phrasing Contents : HTML5)
         
 ### 블록(BLOCK) 박스
-  - 블록 박스는 다른 블록 박스에 포함되거나, 포함할 수 있고, **너비(width)/ 높이(height) 설정이 가능**합니다. 내부에 콘텐츠를 포함하지 않을 경우 높이는 0입니다.
-  - 컨텐츠의 남은 여백까지도 박스로 채워진다. 그래서 글자의 정렬(왼쪽, 가운데, 오른쪽)을 설정할 수 있다
+  - 블록 박스는 다른 블록 박스에 포함되거나, 포함할 수 있고, **너비(width)/ 높이(height) 설정이 가능**합니다. 내부에 콘텐츠를 포함하지 않을 경우 높이는 0이다.
+  - 컨텐츠의 남은 여백까지도 박스로 채워진다. 그래서 글자의 정렬(왼쪽, 가운데, 오른쪽)을 설정할 수 있다 (공간이 있기 때문이다.)
+
+#### block 요소
+  - 기본적으로 width 값이 auto로 적용되어 자신을 포함하는 부모 영역의 너비만큼 늘어난다. 그러므로 마크업 상 나중에 작성된 다음 형제 요소는 해당 요소의 아래에 위치한다.
 
 ### 인라인(INLINE) 박스 
   - 인라인 박스는 인라인 박스에 포함되거나, 포함할 수 있지만, 블록 요소는 포함할 수 없습니다.(컨텐츠의 라인까지만 박스가 채워진다.)   
   - **너비(width)/ 높이(heght) 설정이 가능하지 않습니다.** 내부에 포함한 콘텐츠만 높이와 너비를 가지게 됩니다.
 
-### 인라인(INLINE BLOCK) 블록 박스 
-  - 인라인 블록 박스는 기본적으로 인라인처럼 화면에 렌더링되지만, 블록박스처럼 너비(width)/ 높이(heght) 설정이 가능합니다. 
-        (`<img>`, `<input>`, `<button>` 등)
+#### inline 요소
+  - 자신이 포함하는 콘텐츠(예: 텍스트) 만큼만 너비를 가질 수 있다. 사용자가 임의로 width 속성을 부여해도 반영되지 않는다. 그러므로 마크업 상 다음 형제 요소는 기본 흐름 상에서 오른쪽 옆에 붙는다.
 
-  * display요소로 inline, block, inline block 설정 가능
+### 인라인(INLINE BLOCK) 블록 박스 
+  - 인라인 블록 박스는 기본적으로 인라인처럼 화면에 렌더링되지만, 블록박스처럼 너비(width)/ 높이(heght) 설정이 가능합니다. (`<img>`, `<input>`, `<button>` 등)
+  * 인라인 박스는 좌/우 방향으로 마진,패딩 공간을 설정할 수 있으나, **상/하 방향으로는 공간이 설정되지 않습니다.**
+    + 패딩 공간을 설정 패딩이 적용된 것 처럼 보이나 패딩으로 인한 공간이 벌어지지 않는다.
+
+#### inline block 요소
+  - 기본적으로 자신이 포함하는 콘텐츠 만큼만 너비를 가지지만 (inline 요소처럼) 사용자가 임의로 width 속성을 부여해 너비를 설정할 수 있다. 이 점이 inline 요소와의 차이점이다. 
+  - 예를 들어 나란히 배치해야 하는 상황에서 각 요소에 width 속성을 적용해야 하는 상황이라고 생각해보자.
+    + 수평 내비게이션을 스타일링 할때, a 요소만 나열해도 수평 배치 되지만, width 속성은 적용되지 않는다. a 요소는 기본적으로 inline 이기 때문이다. 하지만 a 요소에 inline-block을 설정하면 block 설정과 달리 수평 배치를 유지한 상태에서 width 속성을 부여해 동일한 너비만큼 아이템들을 설정할 수 있다.
+
 ```css  
   box {
     display: inline;
@@ -397,20 +411,20 @@
         - **div**
         - dl
         - fieldset
-        - **figcaption**
-        - **figure**
-        - **footer**
+        - figcaption
+        - figure
+        - footer
         - form
-        - **h1~6**
-        - **header**
+        - h1~6
+        - header
         - hr
         - noscript
         - ol
         - output
-        - **p**
+        - p
         - pre
-        - **section**
-        - **table**
+        - section
+        - ㅇㅇtable
         - tfoot
         - ul
         - video
@@ -426,8 +440,7 @@
     + padding-box : 박스 안쪽에 공간 여백을 줄 때 사용 (음수값 X)
     + border-box, padding-box, content-box : 배경색 적용 가능
     
-  * 인라인 박스는 좌/우 방향으로 마진,패딩 공간을 설정할 수 있으나, **상/하 방향으로는 공간이 설정되지 않습니다.**
-    + 패딩 공간을 설정 패딩이 적용된 것 처럼 보이나 패딩으로 인한 공간이 벌어지지 않는다.
+
 
   ### [margin]
    * margin-top
@@ -482,7 +495,7 @@
     height: 100px;
     background: #eee;
     text-align: center;
-    line-height: 100px; (줄 높이를 정하는 속성)
+    line-height: 100px;
     margin: 20px 10px 10px 15px;
     padding-top: 1em;
     border-bottom: 1em double #6d70d2;
@@ -490,27 +503,8 @@
   ```
    * border 테두리 지정 : <https://www.tabmode.com/homepage/border.html#gsc.tab=0>
 
-  #### `text-align` 속성 
-   * 텍스트의 정렬 방향을 의미합니다.
-      + left: 왼쪽 정렬    
-        right: 오른쪽 정렬     
-        center: 중앙 정렬    
-        justify: 양쪽 정렬 (자동 줄바꿈시 오른쪽 경계선 부분 정리)
 
-      ```css
-      #box1 { text-align: right; }
-      #box2 { text-align: left; }
-      #box3 { text-align: center; }
-      ```
 
-```css
-      .dimension-ex {
-  min-width: 200px;
-  min-height: 80px;
-  max-width: 500px;
-  max-height: 120px;
-}
-```
   
 ## [DIMENSION]
   * width       --  박스 너비
@@ -519,6 +513,15 @@
   * min-height  --  박스 최소 높이
   * max-width   --  박스 최대 너비
   * max-height  --  박스 최대 높이
+
+  ```css
+  .dimension-ex {
+    min-width: 200px;
+    min-height: 80px;
+    max-width: 500px;
+    max-height: 120px;
+  }
+  ```
 
 ### [BOX SIZING]
   * content-box
@@ -830,6 +833,8 @@
       ```
 
 ## CSS 배경 스타일링
+  * [참고] 
+    + [배경 스타일링](https://developer.mozilla.org/ko/docs/Web/CSS/background)
   
 ### 배경 색: background-color
   * 배경의 색상을 넣는 속성
@@ -922,24 +927,34 @@ iv {
    }
    ```
 
-  ### 패던(Patterns) 디자인
+### 패던(Patterns) 디자인
+```css
+  .is-floral {
+    background: #000 url("../images/oriental-floral-pattern.svg");
+    background-size: 50px; /* 패턴이미지 크기 조정 */
+  }
+```
+```css
+  .is-model {
+    background: url("../images/model.jpg") center;
+    background-size: 150px;
+  }
+```
 
-  ```css
-    .is-floral {
-      background: #000 url("../images/oriental-floral-pattern.svg");
-      background-size: 50px; /* 패턴이미지 크기 조정 */
-    }
-  ```
-  ```css
-    .is-model {
-      background: url("../images/model.jpg") center;
-      background-size: 150px;
-    }
-  ```
+### 배경 클리핑: background-clip
+  * 배경이미지의 클리핑 영역 설정 
+    - content-box
+    - padding-box
+    - border-box
 
-  ### 배경 클리핑: background-clip
-   * 배경이미지의 클리핑 영역 설정 content, padding, border
-  
+  * 항상 맨 아래에 속성을 입력해줘야 한다. 그래야 속성이 잘 적용된다.
+
+### 배경 기준: background-origin
+  * 배경이미지의 시작에 대한 기준점 설정
+    - content-box (기본값)
+    - padding-box
+    - border-box
+
   ```css
     .background-clip {
       box-sizing: border-box;
@@ -951,11 +966,8 @@ iv {
       background-origin: border-box; /*기본값*/
     }
    ```
-
-  ### 배경 기준: background-origin
-   * 배경이미지의 시작에 대한 기준점 설정 content, padding, border
-
 ---
+
 # 4day
 
   ## 플로팅(Floating) 레이아웃
