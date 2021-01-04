@@ -822,7 +822,7 @@ border-image-slice: 위 오른쪽 아래 왼쪽;
   }
   ```
 
-## 폼 디자인
+## HTML - 폼 디자인
 
 ### `<form>`
 
